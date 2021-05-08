@@ -38,14 +38,6 @@ PDIN::PDIN( void )
     this->_type.append( "PDIN" );
 }
 
-std::string PDIN::description( void )
-{
-    std::ostringstream o;
-    
-    o << "MP4 Atom:           " << this->_type << "\n";
-    
-    return o.str();
-}
 
 void PDIN::processData( MP4::BinaryStream * stream, size_t length )
 {

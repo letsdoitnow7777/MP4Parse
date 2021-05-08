@@ -41,13 +41,14 @@ MDHD::MDHD( void )
 std::string MDHD::description( void )
 {
     std::ostringstream o;
-    
-    o << "MP4 Atom:           " << this->_type << "\n";
-    o << "                      - Creation time:     " << this->_creationTime     << "\n";
-    o << "                      - Modification time: " << this->_modificationTime << "\n";
-    o << "                      - Time scale:        " << this->_timeScale        << "\n";
-    o << "                      - Duration:          " << this->_duration         << "\n";
-    o << "                      - Language:          " << *( this->_language )    << "\n";
+    std::string indent = countIndent();
+
+    o << indent << this->_type << "(Atom)" << \
+        "Creation time:     " << this->_creationTime << "\t" << \
+        "Modification time: " << this->_modificationTime << "\t" << \
+        "Time scale: " << this->_timeScale << "\t" << \
+        "Duration:" << this->_duration << "\t" << \
+        "Language:" << *( this->_language ) << "\n";
     
     return o.str();
 }

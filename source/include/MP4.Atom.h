@@ -54,7 +54,11 @@ namespace MP4
             
             std::string getType( void );
             
-            virtual std::string description( void ) = 0;
+            virtual std::string description( void );
+
+            Atom* getParent();
+            Atom* addParent(Atom*);
+            std::string countIndent();
     };
 }
 

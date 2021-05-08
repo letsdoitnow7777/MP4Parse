@@ -38,14 +38,6 @@ SBGP::SBGP( void )
     this->_type.append( "SBGP" );
 }
 
-std::string SBGP::description( void )
-{
-    std::ostringstream o;
-    
-    o << "MP4 Atom:           " << this->_type << "\n";
-    
-    return o.str();
-}
 
 void SBGP::processData( MP4::BinaryStream * stream, size_t length )
 {

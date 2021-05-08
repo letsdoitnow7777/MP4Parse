@@ -38,14 +38,6 @@ VMHD::VMHD( void )
     this->_type.append( "VMHD" );
 }
 
-std::string VMHD::description( void )
-{
-    std::ostringstream o;
-    
-    o << "MP4 Atom:           " << this->_type << "\n";
-    
-    return o.str();
-}
 
 void VMHD::processData( MP4::BinaryStream * stream, size_t length )
 {

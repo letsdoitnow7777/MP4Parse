@@ -38,14 +38,6 @@ SCHI::SCHI( void )
     this->_type.append( "SCHI" );
 }
 
-std::string SCHI::description( void )
-{
-    std::ostringstream o;
-    
-    o << "MP4 Atom:           " << this->_type << "\n";
-    
-    return o.str();
-}
 
 void SCHI::processData( MP4::BinaryStream * stream, size_t length )
 {

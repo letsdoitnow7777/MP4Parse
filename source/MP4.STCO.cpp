@@ -38,14 +38,6 @@ STCO::STCO( void )
     this->_type.append( "STCO" );
 }
 
-std::string STCO::description( void )
-{
-    std::ostringstream o;
-    
-    o << "MP4 Atom:           " << this->_type << "\n";
-    
-    return o.str();
-}
 
 void STCO::processData( MP4::BinaryStream * stream, size_t length )
 {

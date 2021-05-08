@@ -38,14 +38,6 @@ TREF::TREF( void )
     this->_type.append( "TREF" );
 }
 
-std::string TREF::description( void )
-{
-    std::ostringstream o;
-    
-    o << "MP4 Atom:           " << this->_type << "\n";
-    
-    return o.str();
-}
 
 void TREF::processData( MP4::BinaryStream * stream, size_t length )
 {

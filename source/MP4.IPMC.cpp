@@ -38,15 +38,6 @@ IPMC::IPMC( void )
     this->_type.append( "FREE" );
 }
 
-std::string IPMC::description( void )
-{
-    std::ostringstream o;
-    
-    o << "MP4 Atom:           " << this->_type << "\n";
-    
-    return o.str();
-}
-
 void IPMC::processData( MP4::BinaryStream * stream, size_t length )
 {
     stream->ignore( length );

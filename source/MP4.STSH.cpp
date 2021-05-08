@@ -38,14 +38,6 @@ STSH::STSH( void )
     this->_type.append( "STSH" );
 }
 
-std::string STSH::description( void )
-{
-    std::ostringstream o;
-    
-    o << "MP4 Atom:           " << this->_type << "\n";
-    
-    return o.str();
-}
 
 void STSH::processData( MP4::BinaryStream * stream, size_t length )
 {

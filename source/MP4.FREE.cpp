@@ -38,14 +38,6 @@ FREE::FREE( void )
     this->_type.append( "FREE" );
 }
 
-std::string FREE::description( void )
-{
-    std::ostringstream o;
-    
-    o << "MP4 Atom:           " << this->_type << "\n";
-    
-    return o.str();
-}
 
 void FREE::processData( MP4::BinaryStream * stream, size_t length )
 {

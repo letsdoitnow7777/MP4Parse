@@ -50,7 +50,6 @@ namespace MP4
             
             HMHD( void );
             
-            std::string description( void );
             void processData( MP4::BinaryStream * stream, size_t length );
     };
 }

@@ -121,6 +121,7 @@ Parser::Parser( char * filename )
         )
         {
             containerAtom = new MP4::ContainerAtom( type );
+            containerAtom->addParent(parentAtom);
             
             parentAtom->addChild( containerAtom );
             

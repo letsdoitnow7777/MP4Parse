@@ -38,14 +38,6 @@ ILOC::ILOC( void )
     this->_type.append( "ILOC" );
 }
 
-std::string ILOC::description( void )
-{
-    std::ostringstream o;
-    
-    o << "MP4 Atom:           " << this->_type << "\n";
-    
-    return o.str();
-}
 
 void ILOC::processData( MP4::BinaryStream * stream, size_t length )
 {

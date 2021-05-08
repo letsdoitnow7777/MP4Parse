@@ -38,14 +38,6 @@ SDTP::SDTP( void )
     this->_type.append( "SDTP" );
 }
 
-std::string SDTP::description( void )
-{
-    std::ostringstream o;
-    
-    o << "MP4 Atom:           " << this->_type << "\n";
-    
-    return o.str();
-}
 
 void SDTP::processData( MP4::BinaryStream * stream, size_t length )
 {

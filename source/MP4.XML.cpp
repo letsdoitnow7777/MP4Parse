@@ -38,15 +38,6 @@ XML::XML( void )
     this->_type.append( "XML" );
 }
 
-std::string XML::description( void )
-{
-    std::ostringstream o;
-    
-    o << "MP4 Atom:           " << this->_type << " \n";
-    
-    return o.str();
-}
-
 void XML::processData( MP4::BinaryStream * stream, size_t length )
 {
     stream->ignore( length );

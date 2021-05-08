@@ -38,14 +38,6 @@ FRMA::FRMA( void )
     this->_type.append( "FRMA" );
 }
 
-std::string FRMA::description( void )
-{
-    std::ostringstream o;
-    
-    o << "MP4 Atom:           " << this->_type << "\n";
-    
-    return o.str();
-}
 
 void FRMA::processData( MP4::BinaryStream * stream, size_t length )
 {

@@ -38,14 +38,6 @@ MFRO::MFRO( void )
     this->_type.append( "MFRO" );
 }
 
-std::string MFRO::description( void )
-{
-    std::ostringstream o;
-    
-    o << "MP4 Atom:           " << this->_type << "\n";
-    
-    return o.str();
-}
 
 void MFRO::processData( MP4::BinaryStream * stream, size_t length )
 {

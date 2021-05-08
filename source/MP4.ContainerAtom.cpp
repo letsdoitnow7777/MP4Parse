@@ -75,9 +75,15 @@ std::string ContainerAtom::description( void )
 {
     std::string s;
     std::multimap< std::string, Atom * >::iterator it;
-    
-    s += "MP4 Container Atom: " + this->_type + "\n";
-    
+
+    std::ostringstream o;
+    std::string indent = countIndent();
+
+    o << indent << this->_type << "(ContainerAtom)" << "\n";
+
+    s += o.str();
+
+
     for( it = this->_children.begin(); it != this->_children.end(); ++it )
     {
         s.append( ( ( Atom * )( it->second ) )->description() );

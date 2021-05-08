@@ -38,14 +38,6 @@ MDAT::MDAT( void )
     this->_type.append( "MDAT" );
 }
 
-std::string MDAT::description( void )
-{
-    std::ostringstream o;
-    
-    o << "MP4 Atom:           " << this->_type << "\n";
-    
-    return o.str();
-}
 
 void MDAT::processData( MP4::BinaryStream * stream, size_t length )
 {

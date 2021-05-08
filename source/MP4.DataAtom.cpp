@@ -32,3 +32,13 @@
 #include "MP4.DataAtom.h"
 
 using namespace MP4;
+
+std::string DataAtom::description( void )
+{
+    std::ostringstream o;
+    std::string indent = countIndent();
+
+    o << indent << this->_type << "(DataAtom)" << "\n";
+
+    return o.str();
+}

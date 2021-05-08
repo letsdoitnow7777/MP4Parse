@@ -50,7 +50,6 @@ namespace MP4
             
             UDTA( void );
             
-            std::string description( void );
             void processData( MP4::BinaryStream * stream, size_t length );
     };
 }

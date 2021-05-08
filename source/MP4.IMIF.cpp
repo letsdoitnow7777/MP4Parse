@@ -38,14 +38,6 @@ IMIF::IMIF( void )
     this->_type.append( "IMIF" );
 }
 
-std::string IMIF::description( void )
-{
-    std::ostringstream o;
-    
-    o << "MP4 Atom:           " << this->_type << "\n";
-    
-    return o.str();
-}
 
 void IMIF::processData( MP4::BinaryStream * stream, size_t length )
 {

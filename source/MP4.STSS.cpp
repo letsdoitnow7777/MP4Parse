@@ -38,14 +38,6 @@ STSS::STSS( void )
     this->_type.append( "STSS" );
 }
 
-std::string STSS::description( void )
-{
-    std::ostringstream o;
-    
-    o << "MP4 Atom:           " << this->_type << "\n";
-    
-    return o.str();
-}
 
 void STSS::processData( MP4::BinaryStream * stream, size_t length )
 {

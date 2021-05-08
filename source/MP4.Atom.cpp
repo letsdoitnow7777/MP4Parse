@@ -40,3 +40,36 @@ std::string Atom::getType( void )
 {
     return this->_type;
 }
+
+Atom *Atom::getParent() {
+    return _parent;
+}
+
+std::string Atom::countIndent() {
+    int deep = 0;
+    Atom* parent = getParent();
+    while(parent) {
+        deep += 1;
+        parent = parent->getParent();
+    }
+
+    std::ostringstream os;
+    std::fill_n(std::ostream_iterator<std::string>(os), deep, "  ");
+    std::string indent = os.str();
+    return indent;
+}
+
+Atom *Atom::addParent(Atom * parent) {
+    _parent = parent;
+    return nullptr;
+}
+
+std::string Atom::description( void )
+{
+    std::ostringstream o;
+    std::string indent = countIndent();
+
+    o << indent << this->_type << "(Atom)" << "\n";
+
+    return o.str();
+}

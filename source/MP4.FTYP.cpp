@@ -54,11 +54,11 @@ std::string FTYP::description( void )
     std::string * brand;
     std::vector< std::string * >::iterator it;
     std::ostringstream o;
+    std::string indent = countIndent();
     
-    o << "MP4 Atom:           " << this->_type << "\n";
-    o << "                      - Major brand:       " << _majorBrand << "\n";
-    o << "                      - Minor version:     " << _minorVersion << "\n";
-    o << "                      - Compatible brands: \n";
+    o << indent << this->_type << "(Atom)" << " Major brand:" << _majorBrand << \
+                                            "Minor version:" << _minorVersion << \
+                                            " Compatible brands: \n";
     
     s = o.str();
     
@@ -66,8 +66,9 @@ std::string FTYP::description( void )
     {
         brand = *( it );
         
-        o << "                          - " << *( brand ) << "\n";
+        o << "  " << *( brand ) << "\t";
     }
+    o << "\n";
     
     return o.str();
 }
