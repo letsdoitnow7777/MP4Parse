@@ -577,4 +577,149 @@ void BinaryStream::clear(void )
 }
 
 
+BinaryStreamBounded::BinaryStreamBounded(BinaryStream *binaryStream, int len)
+: underlyingStream(binaryStream)
+, length(len)
+{}
+//
+//uint16_t BinaryStreamBounded::readBigEndianUnsignedShort( )
+//{
+//    return stream->readLittleEndianUnsignedShort();
+//}
+//
+//uint16_t BinaryStreamBounded::readLittleEndianUnsignedShort(void )
+//{
+//    uint8_t  c[ 2 ];
+//    uint16_t n;
+//
+//    this->read( ( char * )c, 2 );
+//
+//    n = ( uint16_t )c[ 1 ] << 8
+//        | ( uint16_t )c[ 0 ];
+//
+//    return n;
+//}
+//
+//
+//uint32_t BinaryStreamBounded::readBigEndianUnsignedInteger(void )
+//{
+//    uint8_t  c[ 4 ];
+//    uint32_t n;
+//
+//    this->read( ( char * )c, 4 );
+//
+//    n = ( uint32_t )c[ 0 ] << 24
+//        | ( uint32_t )c[ 1 ] << 16
+//        | ( uint32_t )c[ 2 ] << 8
+//        | ( uint32_t )c[ 3 ];
+//
+//    return n;
+//}
+//
+//uint32_t BinaryStreamBounded::readLittleEndianUnsignedInteger(void )
+//{
+//    uint8_t  c[ 4 ];
+//    uint32_t n;
+//
+//    this->read( ( char * )c, 4 );
+//
+//    n = ( uint32_t )c[ 3 ] << 24
+//        | ( uint32_t )c[ 2 ] << 16
+//        | ( uint32_t )c[ 1 ] << 8
+//        | ( uint32_t )c[ 0 ];
+//
+//    return n;
+//}
+//
+//
+//
+//uint64_t BinaryStreamBounded::readBigEndianUnsignedLong(void )
+//{
+//    uint8_t  c[ 8 ];
+//    uint64_t n;
+//
+//    this->read( ( char * )c, 8 );
+//
+//    n = ( uint64_t )c[ 0 ] << 56
+//        | ( uint64_t )c[ 1 ] << 48
+//        | ( uint64_t )c[ 2 ] << 40
+//        | ( uint64_t )c[ 3 ] << 32
+//        | ( uint64_t )c[ 4 ] << 24
+//        | ( uint64_t )c[ 5 ] << 16
+//        | ( uint64_t )c[ 6 ] << 8
+//        | ( uint64_t )c[ 7 ];
+//
+//    return n;
+//}
+//
+//float BinaryStreamBounded::readBigEndianFixedPoint(unsigned int integerLength, unsigned int fractionalLength )
+//{
+//    uint32_t n;
+//    unsigned int integer;
+//    unsigned int fractionalMask;
+//    unsigned int fractional;
+//
+//    if( integerLength + fractionalLength == 16 )
+//    {
+//        n = this->readBigEndianUnsignedShort();
+//    }
+//    else
+//    {
+//        n = this->readBigEndianUnsignedInteger();
+//    }
+//
+//    integer        = n >> fractionalLength;
+//    fractionalMask = pow( 2, fractionalLength ) - 1;
+//    fractional     = ( n & fractionalMask ) / ( 1 << fractionalLength );
+//
+//    return integer + fractional;
+//}
+//
+//
+//std::string * BinaryStreamBounded::readBigEndianISO639Code(void )
+//{
+//    unsigned char c1;
+//    unsigned char c2;
+//    unsigned char c3;
+//    uint16_t      n;
+//    std::string * s;
+//
+//    s = new std::string();
+//    n = this->readBigEndianUnsignedShort();
+//
+//    c1 = ( n & 0x7C00 ) >> 10;  // Mask is 0111 1100 0000 0000
+//    c2 = ( n & 0x03E0 ) >> 5;   // Mask is 0000 0011 1110 0000
+//    c3 = ( n & 0x001F );        // Mask is 0000 0000 0001 1111
+//
+//    c1 += 0x60;
+//    c2 += 0x60;
+//    c3 += 0x60;
+//
+//    s->append( ( char * )&c1, 1 );
+//    s->append( ( char * )&c2, 1 );
+//    s->append( ( char * )&c3, 1 );
+//
+//    return s;
+//}
 
+bool BinaryStreamBounded::eof() const
+{
+    return underlyingStream->eof();
+}
+
+
+std::istream & BinaryStreamBounded::get(char * s, std::streamsize n )
+{
+    return underlyingStream->get( s, n );
+}
+
+
+std::istream & BinaryStreamBounded::ignore(std::streamsize n, int delim )
+{
+    return underlyingStream->ignore( n, delim );
+}
+
+std::istream & BinaryStreamBounded::read(char * s, std::streamsize n )
+{
+    return underlyingStream->read( s, n );
+}
