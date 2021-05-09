@@ -50,7 +50,7 @@ namespace MP4
             
             TKHD( void );
             
-            void processData( MP4::BinaryStream * stream, size_t length );
+            void processData(MP4::BinaryStream * stream, size_t length );
     };
 }
 

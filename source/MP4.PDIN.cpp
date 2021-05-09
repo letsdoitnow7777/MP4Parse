@@ -39,7 +39,7 @@ PDIN::PDIN( void )
 }
 
 
-void PDIN::processData( MP4::BinaryStream * stream, size_t length )
+void PDIN::processData(MP4::BinaryStream * stream, size_t length )
 {
     stream->ignore( length );
 }

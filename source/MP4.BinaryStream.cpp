@@ -33,52 +33,17 @@
 
 using namespace MP4;
 
-BinaryStreamException::BinaryStreamException( void )
-{
-    this->code = -1;
-}
-
-BinaryStreamException::BinaryStreamException( unsigned int c )
-{
-    this->code = c;
-}
-
-const char * BinaryStreamException::what( void ) const throw()
-{
-    switch( this->code )
-    {
-        case BinaryStreamException::NoFileName:
-            
-            return "No input file";
-        
-        case BinaryStreamException::OpenError:
-            
-            return "File open error";
-    }
-    
-    return "Unknown exception";
-}
-
-BinaryStream::BinaryStream( void )
-{
-    BinaryStreamException e = BinaryStreamException( BinaryStreamException::NoFileName );
-    
-    throw e;
-}
-
-BinaryStream::BinaryStream( char * filename )
+BinaryStream::BinaryStream(char * filename )
 {
     this->stream.open( filename, std::ios::binary | std::ios::in );
     
     if( this->stream.is_open() == false || this->stream.good() == false )
     {
-        BinaryStreamException e = BinaryStreamException( BinaryStreamException::OpenError );
-        
-        throw e;
+        std::cout << "Failed to make binary stream" << std::endl;
     }
 }
 
-BinaryStream::~BinaryStream( void )
+BinaryStream::~BinaryStream(void )
 {
     if( this->stream.is_open() )
     {
@@ -86,7 +51,7 @@ BinaryStream::~BinaryStream( void )
     }
 }
 
-uint8_t BinaryStream::readUnsignedChar( void )
+uint8_t BinaryStream::readUnsignedChar(void )
 {
     uint8_t n;
     
@@ -96,7 +61,7 @@ uint8_t BinaryStream::readUnsignedChar( void )
 }
 
 
-int8_t BinaryStream::readSignedChar( void )
+int8_t BinaryStream::readSignedChar(void )
 {
     int8_t n;
     
@@ -106,7 +71,7 @@ int8_t BinaryStream::readSignedChar( void )
 }
 
             
-uint16_t BinaryStream::readUnsignedShort( void )
+uint16_t BinaryStream::readUnsignedShort(void )
 {
     uint16_t n;
     
@@ -115,7 +80,7 @@ uint16_t BinaryStream::readUnsignedShort( void )
     return n;
 }
 
-int16_t BinaryStream::readSignedShort( void )
+int16_t BinaryStream::readSignedShort(void )
 {
     int16_t n;
     
@@ -124,7 +89,7 @@ int16_t BinaryStream::readSignedShort( void )
     return n;
 }
 
-uint16_t BinaryStream::readBigEndianUnsignedShort( void )
+uint16_t BinaryStream::readBigEndianUnsignedShort(void )
 {
     uint8_t  c[ 2 ];
     uint16_t n;
@@ -137,7 +102,7 @@ uint16_t BinaryStream::readBigEndianUnsignedShort( void )
     return n;
 }
 
-uint16_t BinaryStream::readLittleEndianUnsignedShort( void )
+uint16_t BinaryStream::readLittleEndianUnsignedShort(void )
 {
     uint8_t  c[ 2 ];
     uint16_t n;
@@ -151,7 +116,7 @@ uint16_t BinaryStream::readLittleEndianUnsignedShort( void )
 }
 
             
-uint32_t BinaryStream::readUnsignedInteger( void )
+uint32_t BinaryStream::readUnsignedInteger(void )
 {
     uint32_t n;
     
@@ -160,7 +125,7 @@ uint32_t BinaryStream::readUnsignedInteger( void )
     return n;
 }
 
-int32_t BinaryStream::readSignedInteger( void )
+int32_t BinaryStream::readSignedInteger(void )
 {
     int32_t n;
     
@@ -169,7 +134,7 @@ int32_t BinaryStream::readSignedInteger( void )
     return n;
 }
 
-uint32_t BinaryStream::readBigEndianUnsignedInteger( void )
+uint32_t BinaryStream::readBigEndianUnsignedInteger(void )
 {
     uint8_t  c[ 4 ];
     uint32_t n;
@@ -184,7 +149,7 @@ uint32_t BinaryStream::readBigEndianUnsignedInteger( void )
     return n;
 }
 
-uint32_t BinaryStream::readLittleEndianUnsignedInteger( void )
+uint32_t BinaryStream::readLittleEndianUnsignedInteger(void )
 {
     uint8_t  c[ 4 ];
     uint32_t n;
@@ -200,7 +165,7 @@ uint32_t BinaryStream::readLittleEndianUnsignedInteger( void )
 }
 
             
-uint64_t BinaryStream::readUnsignedLong( void )
+uint64_t BinaryStream::readUnsignedLong(void )
 {
     uint64_t n;
     
@@ -209,7 +174,7 @@ uint64_t BinaryStream::readUnsignedLong( void )
     return n;
 }
 
-int64_t BinaryStream::readSignedLong( void )
+int64_t BinaryStream::readSignedLong(void )
 {
     int64_t n;
     
@@ -218,7 +183,7 @@ int64_t BinaryStream::readSignedLong( void )
     return n;
 }
 
-uint64_t BinaryStream::readBigEndianUnsignedLong( void )
+uint64_t BinaryStream::readBigEndianUnsignedLong(void )
 {
     uint8_t  c[ 8 ];
     uint64_t n;
@@ -237,7 +202,7 @@ uint64_t BinaryStream::readBigEndianUnsignedLong( void )
     return n;
 }
 
-uint64_t BinaryStream::readLittleEndianUnsignedLong( void )
+uint64_t BinaryStream::readLittleEndianUnsignedLong(void )
 {
     uint8_t  c[ 8 ];
     uint64_t n;
@@ -256,7 +221,7 @@ uint64_t BinaryStream::readLittleEndianUnsignedLong( void )
     return n;
 }
 
-float BinaryStream::readFloat( void )
+float BinaryStream::readFloat(void )
 {
     uint8_t  exp;
     uint32_t mantissa;
@@ -305,7 +270,7 @@ float BinaryStream::readFloat( void )
     return ( sign == 0 ) ? flt : -flt;
 }
             
-double BinaryStream::readDouble( void )
+double BinaryStream::readDouble(void )
 {
     uint16_t  exp;
     uint64_t mantissa;
@@ -349,7 +314,7 @@ double BinaryStream::readDouble( void )
     return ( sign == 0 ) ? flt : -flt;
 }
 
-float BinaryStream::readBigEndianFixedPoint( unsigned int integerLength, unsigned int fractionalLength )
+float BinaryStream::readBigEndianFixedPoint(unsigned int integerLength, unsigned int fractionalLength )
 {
     uint32_t n;
     unsigned int integer;
@@ -372,7 +337,7 @@ float BinaryStream::readBigEndianFixedPoint( unsigned int integerLength, unsigne
     return integer + fractional;
 }
 
-float BinaryStream::readLittleEndianFixedPoint( unsigned int integerLength, unsigned int fractionalLength )
+float BinaryStream::readLittleEndianFixedPoint(unsigned int integerLength, unsigned int fractionalLength )
 {
     uint32_t n;
     unsigned int integer;
@@ -395,7 +360,7 @@ float BinaryStream::readLittleEndianFixedPoint( unsigned int integerLength, unsi
     return integer + fractional;
 }
 
-std::string * BinaryStream::readBigEndianISO639Code( void )
+std::string * BinaryStream::readBigEndianISO639Code(void )
 {
     unsigned char c1;
     unsigned char c2;
@@ -421,7 +386,7 @@ std::string * BinaryStream::readBigEndianISO639Code( void )
     return s;
 }
 
-std::string * BinaryStream::readNULLTerminatedString( void )
+std::string * BinaryStream::readNULLTerminatedString(void )
 {
     unsigned char c;
     std::string * s;
@@ -440,7 +405,7 @@ std::string * BinaryStream::readNULLTerminatedString( void )
     return s;
 }
 
-std::string * BinaryStream::readUTF8String( void )
+std::string * BinaryStream::readUTF8String(void )
 {
     unsigned char c;
     uint16_t      length;
@@ -459,7 +424,7 @@ std::string * BinaryStream::readUTF8String( void )
     return NULL;
 }
 
-std::string * BinaryStream::readLongUTF8String( void )
+std::string * BinaryStream::readLongUTF8String(void )
 {
     unsigned char c;
     uint32_t      length;
@@ -478,7 +443,7 @@ std::string * BinaryStream::readLongUTF8String( void )
     return NULL;
 }
             
-void BinaryStream::readMatrix( matrix * m )
+void BinaryStream::readMatrix(matrix * m )
 {
     m->a = this->readBigEndianFixedPoint( 16, 16 );
     m->b = this->readBigEndianFixedPoint( 16, 16 );
@@ -491,77 +456,77 @@ void BinaryStream::readMatrix( matrix * m )
     m->w = this->readBigEndianFixedPoint(  2, 30 );
 }
 
-bool BinaryStream::good( void ) const
+bool BinaryStream::good(void ) const
 {
     return stream.good();
 }
 
-bool BinaryStream::eof( void ) const
+bool BinaryStream::eof(void ) const
 {
     return stream.eof();
 }
 
-bool BinaryStream::fail( void ) const
+bool BinaryStream::fail(void ) const
 {
     return stream.fail();
 }
 
-bool BinaryStream::bad( void ) const
+bool BinaryStream::bad(void ) const
 {
     return stream.bad();
 }
 
-int BinaryStream::peek( void )
+int BinaryStream::peek(void )
 {
     return stream.peek();
 }
 
-int BinaryStream::get( void )
+int BinaryStream::get(void )
 {
     return stream.get();
 }
 
-int BinaryStream::sync( void )
+int BinaryStream::sync(void )
 {
     return stream.sync();
 }
 
-std::streampos BinaryStream::tellg( void )
+std::streampos BinaryStream::tellg(void )
 {
     return stream.tellg();
 }
 
-std::streamsize BinaryStream::readsome( char * s, std::streamsize n )
+std::streamsize BinaryStream::readsome(char * s, std::streamsize n )
 {
     return stream.readsome( s, n );
 }
 
-std::streamsize BinaryStream::gcount( void ) const
+std::streamsize BinaryStream::gcount(void ) const
 {
     return stream.gcount();
 }
 
-std::istream & BinaryStream::get( char & c )
+std::istream & BinaryStream::get(char & c )
 {
     return stream.get( c );
 }
 
-std::istream & BinaryStream::get( char * s, std::streamsize n )
+std::istream & BinaryStream::get(char * s, std::streamsize n )
 {
     return stream.get( s, n );
 }
 
-std::istream & BinaryStream::get( char * s, std::streamsize n, char delim )
+std::istream & BinaryStream::get(char * s, std::streamsize n, char delim )
 {
     return stream.get( s, n, delim );
 }
 
-std::istream & BinaryStream::get( std::streambuf & sb )
+std::istream & BinaryStream::get(std::streambuf & sb )
 {
     return stream.get( sb );
 }
 
-std::istream & BinaryStream::get( std::streambuf & sb, char delim )
+std::istream & BinaryStream::get(std::streambuf & sb, char delim )
 {
     return stream.get( sb, delim );
 }
@@ -576,37 +541,40 @@ std::istream & BinaryStream::getline(char * s, std::streamsize n, char delim )
     return stream.getline( s, n, delim );
 }
 
-std::istream & BinaryStream::ignore( std::streamsize n, int delim )
+std::istream & BinaryStream::ignore(std::streamsize n, int delim )
 {
     return stream.ignore( n, delim );
 }
 
-std::istream & BinaryStream::read( char * s, std::streamsize n )
+std::istream & BinaryStream::read(char * s, std::streamsize n )
 {
     return stream.read( s, n );
 }
 
-std::istream & BinaryStream::putback( char c )
+std::istream & BinaryStream::putback(char c )
 {
     return stream.putback( c );
 }
 
-std::istream & BinaryStream::unget( void )
+std::istream & BinaryStream::unget(void )
 {
     return stream.unget();
 }
 
-std::istream & BinaryStream::seekg( std::streampos pos )
+std::istream & BinaryStream::seekg(std::streampos pos )
 {
     return stream.seekg( pos );
 }
 
-std::istream & BinaryStream::seekg( std::streamoff off, std::ios_base::seekdir dir )
+std::istream & BinaryStream::seekg(std::streamoff off, std::ios_base::seekdir dir )
 {
     return stream.seekg( off, dir );
 }
 
-void BinaryStream::clear( void )
+void BinaryStream::clear(void )
 {
     return stream.clear();
 }
+
+
+

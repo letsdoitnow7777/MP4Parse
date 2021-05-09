@@ -39,7 +39,7 @@ STZ2::STZ2( void )
 }
 
 
-void STZ2::processData( MP4::BinaryStream * stream, size_t length )
+void STZ2::processData(MP4::BinaryStream * stream, size_t length )
 {
     stream->ignore( length );
 }

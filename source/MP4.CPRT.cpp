@@ -39,7 +39,7 @@ CPRT::CPRT( void )
 }
 
 
-void CPRT::processData( MP4::BinaryStream * stream, size_t length )
+void CPRT::processData(MP4::BinaryStream * stream, size_t length )
 {
     stream->ignore( length );
 }

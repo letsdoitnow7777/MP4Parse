@@ -38,7 +38,7 @@ XML::XML( void )
     this->_type.append( "XML" );
 }
 
-void XML::processData( MP4::BinaryStream * stream, size_t length )
+void XML::processData(MP4::BinaryStream * stream, size_t length )
 {
     stream->ignore( length );
 }

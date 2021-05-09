@@ -38,7 +38,7 @@ IPMC::IPMC( void )
     this->_type.append( "FREE" );
 }
 
-void IPMC::processData( MP4::BinaryStream * stream, size_t length )
+void IPMC::processData(MP4::BinaryStream * stream, size_t length )
 {
     stream->ignore( length );
 }

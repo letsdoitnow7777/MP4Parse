@@ -39,7 +39,7 @@ IMIF::IMIF( void )
 }
 
 
-void IMIF::processData( MP4::BinaryStream * stream, size_t length )
+void IMIF::processData(MP4::BinaryStream * stream, size_t length )
 {
     stream->ignore( length );
 }

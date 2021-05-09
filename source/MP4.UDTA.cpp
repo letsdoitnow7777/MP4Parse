@@ -39,7 +39,7 @@ UDTA::UDTA( void )
 }
 
 
-void UDTA::processData( MP4::BinaryStream * stream, size_t length )
+void UDTA::processData(MP4::BinaryStream * stream, size_t length )
 {
     stream->ignore( length );
 }

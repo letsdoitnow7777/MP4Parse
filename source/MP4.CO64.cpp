@@ -39,7 +39,7 @@ CO64::CO64( void )
 }
 
 
-void CO64::processData( MP4::BinaryStream * stream, size_t length )
+void CO64::processData(MP4::BinaryStream * stream, size_t length )
 {
     stream->ignore( length );
 }

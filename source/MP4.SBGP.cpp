@@ -39,7 +39,7 @@ SBGP::SBGP( void )
 }
 
 
-void SBGP::processData( MP4::BinaryStream * stream, size_t length )
+void SBGP::processData(MP4::BinaryStream * stream, size_t length )
 {
     stream->ignore( length );
 }

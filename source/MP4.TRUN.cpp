@@ -39,7 +39,7 @@ TRUN::TRUN( void )
 }
 
 
-void TRUN::processData( MP4::BinaryStream * stream, size_t length )
+void TRUN::processData(MP4::BinaryStream * stream, size_t length )
 {
     stream->ignore( length );
 }

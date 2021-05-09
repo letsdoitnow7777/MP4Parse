@@ -39,7 +39,7 @@ FREE::FREE( void )
 }
 
 
-void FREE::processData( MP4::BinaryStream * stream, size_t length )
+void FREE::processData(MP4::BinaryStream * stream, size_t length )
 {
     stream->ignore( length );
 }

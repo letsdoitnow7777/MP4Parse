@@ -39,7 +39,7 @@ SUBS::SUBS( void )
 }
 
 
-void SUBS::processData( MP4::BinaryStream * stream, size_t length )
+void SUBS::processData(MP4::BinaryStream * stream, size_t length )
 {
     stream->ignore( length );
 }

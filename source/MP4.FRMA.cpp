@@ -39,7 +39,7 @@ FRMA::FRMA( void )
 }
 
 
-void FRMA::processData( MP4::BinaryStream * stream, size_t length )
+void FRMA::processData(MP4::BinaryStream * stream, size_t length )
 {
     stream->ignore( length );
 }

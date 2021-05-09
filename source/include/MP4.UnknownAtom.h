@@ -72,11 +72,11 @@ namespace MP4
             
         public:
             
-            UnknownAtom( void );
-            UnknownAtom( char * t );
+            UnknownAtom( void ) = delete;
+            explicit UnknownAtom( char * t );
             
             std::string description( void );
-            void processData( MP4::BinaryStream * stream, size_t length );
+            void processData(MP4::BinaryStream * stream, size_t length );
     };
 }
 

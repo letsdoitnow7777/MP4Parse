@@ -74,7 +74,7 @@ Parser::Parser( char * filename )
     MP4::ContainerAtom * containerAtom;
     MP4::ContainerAtom * parentAtom;
     
-    this->_stream = new BinaryStream( filename );
+    this->_stream = new BinaryStream(filename );
     this->_file   = new MP4::File();
     data          = NULL;
     atom          = NULL;
@@ -99,7 +99,7 @@ Parser::Parser( char * filename )
         {
             dataLength = length - 8;
         }
-        
+
         /* Container atoms */
         if
         (
@@ -124,7 +124,7 @@ Parser::Parser( char * filename )
             containerAtom->addParent(parentAtom);
             
             parentAtom->addChild( containerAtom );
-            
+
             parentAtom = containerAtom;
             
             continue;
@@ -331,7 +331,9 @@ Parser::Parser( char * filename )
         {
             atom = new MP4::UnknownAtom( type );
         }
-        
+
+        atom->addParent(parentAtom);
+
         parentAtom->addChild( atom );
         
         ( ( MP4::DataAtom * )atom )->processData( this->_stream, dataLength );

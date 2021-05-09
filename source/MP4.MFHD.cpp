@@ -39,7 +39,7 @@ MFHD::MFHD( void )
 }
 
 
-void MFHD::processData( MP4::BinaryStream * stream, size_t length )
+void MFHD::processData(MP4::BinaryStream * stream, size_t length )
 {
     stream->ignore( length );
 }

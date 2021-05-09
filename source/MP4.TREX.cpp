@@ -39,7 +39,7 @@ TREX::TREX( void )
 }
 
 
-void TREX::processData( MP4::BinaryStream * stream, size_t length )
+void TREX::processData(MP4::BinaryStream * stream, size_t length )
 {
     stream->ignore( length );
 }

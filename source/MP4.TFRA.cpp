@@ -39,7 +39,7 @@ TFRA::TFRA( void )
 }
 
 
-void TFRA::processData( MP4::BinaryStream * stream, size_t length )
+void TFRA::processData(MP4::BinaryStream * stream, size_t length )
 {
     stream->ignore( length );
 }

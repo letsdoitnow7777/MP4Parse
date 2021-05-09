@@ -56,7 +56,7 @@ namespace MP4
 
         std::string description( void );
 
-        void processData( MP4::BinaryStream * stream, size_t length );
+        void processData(MP4::BinaryStream * stream, size_t length );
     };
 }
 

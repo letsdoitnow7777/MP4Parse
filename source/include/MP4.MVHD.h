@@ -59,7 +59,7 @@ namespace MP4
             
             MVHD( void );
             
-            void processData( MP4::BinaryStream * stream, size_t length );
+            void processData(MP4::BinaryStream * stream, size_t length );
     };
 }
 

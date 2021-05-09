@@ -33,35 +33,6 @@
 
 using namespace MP4;
 
-UnknownAtomException::UnknownAtomException( void )
-{
-    this->code = -1;
-}
-
-UnknownAtomException::UnknownAtomException( unsigned int c )
-{
-    this->code = c;
-}
-
-const char * UnknownAtomException::what( void ) const throw()
-{
-    switch( this->code )
-    {
-        case 0x00:
-            
-            return "No atom type given";
-    }
-    
-    return "Unknown exception";
-}
-
-UnknownAtom::UnknownAtom( void )
-{
-    UnknownAtomException e = UnknownAtomException( UnknownAtomException::NoAtomType );
-    
-    throw e;
-}
-
 UnknownAtom::UnknownAtom( char * t )
 {
     this->_type = t;
@@ -71,15 +42,15 @@ UnknownAtom::UnknownAtom( char * t )
 
 std::string UnknownAtom::description( void )
 {
-    std::string s = std::string( "MP4 Atom:           unknown (" );
-    
-    s.append( this->_type );
-    s.append( ")\n" );
-    
-    return s;
+    std::ostringstream o;
+    std::string indent = countIndent();
+
+    o << indent << this->_type << "(Unknown)" << "\n";
+
+    return o.str();
 }
 
-void UnknownAtom::processData( MP4::BinaryStream * stream, size_t length )
+void UnknownAtom::processData(MP4::BinaryStream * stream, size_t length )
 {
     stream->ignore( length );
 }

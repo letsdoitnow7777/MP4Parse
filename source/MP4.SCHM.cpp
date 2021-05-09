@@ -39,7 +39,7 @@ SCHM::SCHM( void )
 }
 
 
-void SCHM::processData( MP4::BinaryStream * stream, size_t length )
+void SCHM::processData(MP4::BinaryStream * stream, size_t length )
 {
     stream->ignore( length );
 }

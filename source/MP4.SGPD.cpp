@@ -39,7 +39,7 @@ SGPD::SGPD( void )
 }
 
 
-void SGPD::processData( MP4::BinaryStream * stream, size_t length )
+void SGPD::processData(MP4::BinaryStream * stream, size_t length )
 {
     stream->ignore( length );
 }

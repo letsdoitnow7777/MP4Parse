@@ -39,7 +39,7 @@ HMHD::HMHD( void )
 }
 
 
-void HMHD::processData( MP4::BinaryStream * stream, size_t length )
+void HMHD::processData(MP4::BinaryStream * stream, size_t length )
 {
     stream->ignore( length );
 }
