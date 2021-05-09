@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-STSC::STSC( void )
+STSC::STSC()
 {
     this->_type.append( "STSC" );
 }

@@ -33,7 +33,7 @@
 
 using namespace MP4;
 
-std::string DataAtom::description( void )
+std::string DataAtom::description()
 {
     std::ostringstream o;
     std::string indent = countIndent();

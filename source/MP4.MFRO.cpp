@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-MFRO::MFRO( void )
+MFRO::MFRO()
 {
     this->_type.append( "MFRO" );
 }

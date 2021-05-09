@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-FRMA::FRMA( void )
+FRMA::FRMA()
 {
     this->_type.append( "FRMA" );
 }

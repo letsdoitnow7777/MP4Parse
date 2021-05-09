@@ -33,10 +33,10 @@
 
 using namespace MP4;
 
-Atom::~Atom( void )
+Atom::~Atom()
 {}
 
-std::string Atom::getType( void )
+std::string Atom::getType()
 {
     return this->_type;
 }
@@ -64,7 +64,7 @@ Atom *Atom::addParent(Atom * parent) {
     return nullptr;
 }
 
-std::string Atom::description( void )
+std::string Atom::description()
 {
     std::ostringstream o;
     std::string indent = countIndent();

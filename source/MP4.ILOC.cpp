@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-ILOC::ILOC( void )
+ILOC::ILOC()
 {
     this->_type.append( "ILOC" );
 }

@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-SCHM::SCHM( void )
+SCHM::SCHM()
 {
     this->_type.append( "SCHM" );
 }

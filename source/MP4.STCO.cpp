@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-STCO::STCO( void )
+STCO::STCO()
 {
     this->_type.append( "STCO" );
 }

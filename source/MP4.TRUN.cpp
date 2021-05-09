@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-TRUN::TRUN( void )
+TRUN::TRUN()
 {
     this->_type.append( "TRUN" );
 }

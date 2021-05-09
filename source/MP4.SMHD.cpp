@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-SMHD::SMHD( void )
+SMHD::SMHD()
 {
     this->_type.append( "SMHD" );
 }

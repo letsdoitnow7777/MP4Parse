@@ -37,7 +37,7 @@ void FullBox::processData(MP4::BinaryStream * stream, size_t length )
 {
     uint32_t data;
     
-    ( void )length;
+    (void)length;
     
     data = stream->readBigEndianUnsignedInteger();
     

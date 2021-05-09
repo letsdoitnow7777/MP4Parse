@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-STSS::STSS( void )
+STSS::STSS()
 {
     this->_type.append( "STSS" );
 }

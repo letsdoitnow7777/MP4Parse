@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-BXML::BXML( void )
+BXML::BXML()
 {
     this->_type.append( "BXML" );
 }

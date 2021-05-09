@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-TFRA::TFRA( void )
+TFRA::TFRA()
 {
     this->_type.append( "TFRA" );
 }

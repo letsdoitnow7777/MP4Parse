@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-STSZ::STSZ( void )
+STSZ::STSZ()
 {
     this->_type.append( "STSZ" );
 }

@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-DREF::DREF( void )
+DREF::DREF()
 {
     this->_type.append( "DREF" );
 }

@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-MDAT::MDAT( void )
+MDAT::MDAT()
 {
     this->_type.append( "MDAT" );
 }

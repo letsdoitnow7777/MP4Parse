@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-TKHD::TKHD( void )
+TKHD::TKHD()
 {
     this->_type.append( "TKHD" );
 }

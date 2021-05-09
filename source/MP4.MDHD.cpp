@@ -33,12 +33,12 @@
 
 using namespace MP4;
           
-MDHD::MDHD( void )
+MDHD::MDHD()
 {
     this->_type.append( "MDHD" );
 }
 
-std::string MDHD::description( void )
+std::string MDHD::description()
 {
     std::ostringstream o;
     std::string indent = countIndent();

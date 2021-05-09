@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-SBGP::SBGP( void )
+SBGP::SBGP()
 {
     this->_type.append( "SBGP" );
 }

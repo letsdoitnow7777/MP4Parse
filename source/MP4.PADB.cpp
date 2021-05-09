@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-PADB::PADB( void )
+PADB::PADB()
 {
     this->_type.append( "PADB" );
 }

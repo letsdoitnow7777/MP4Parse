@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-STDP::STDP( void )
+STDP::STDP()
 {
     this->_type.append( "STDP" );
 }

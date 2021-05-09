@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-MEHD::MEHD( void )
+MEHD::MEHD()
 {
     this->_type.append( "MEHD" );
 }

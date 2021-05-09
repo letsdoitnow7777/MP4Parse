@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-IINF::IINF( void )
+IINF::IINF()
 {
     this->_type.append( "IINF" );
 }

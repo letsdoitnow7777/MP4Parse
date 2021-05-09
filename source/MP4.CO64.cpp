@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-CO64::CO64( void )
+CO64::CO64()
 {
     this->_type.append( "CO64" );
 }

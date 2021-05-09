@@ -55,9 +55,9 @@ namespace MP4
                 NoAtomType = 0x00
             };
             
-            UnknownAtomException( void );
+            UnknownAtomException();
             UnknownAtomException( unsigned int c );
-            virtual const char * what( void ) const throw();
+            virtual const char * what() const throw();
     };
     
     class UnknownAtom : public DataAtom
@@ -72,10 +72,10 @@ namespace MP4
             
         public:
             
-            UnknownAtom( void ) = delete;
+            UnknownAtom() = delete;
             explicit UnknownAtom( char * t );
             
-            std::string description( void );
+            std::string description();
             void processData(MP4::BinaryStream * stream, size_t length );
     };
 }

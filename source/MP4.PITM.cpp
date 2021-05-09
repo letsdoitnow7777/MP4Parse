@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-PITM::PITM( void )
+PITM::PITM()
 {
     this->_type.append( "PITM" );
 }

@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-SCHI::SCHI( void )
+SCHI::SCHI()
 {
     this->_type.append( "SCHI" );
 }

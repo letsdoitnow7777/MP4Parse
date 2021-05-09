@@ -40,7 +40,7 @@ UnknownAtom::UnknownAtom( char * t )
     std::transform( this->_type.begin(), this->_type.end(), this->_type.begin(), ::toupper );
 }
 
-std::string UnknownAtom::description( void )
+std::string UnknownAtom::description()
 {
     std::ostringstream o;
     std::string indent = countIndent();

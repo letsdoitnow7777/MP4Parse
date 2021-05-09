@@ -40,7 +40,7 @@ ContainerAtom::ContainerAtom( char * type )
     std::transform( this->_type.begin(), this->_type.end(), this->_type.begin(), ::toupper );
 }
 
-ContainerAtom::~ContainerAtom( void )
+ContainerAtom::~ContainerAtom()
 {
     std::multimap< std::string, Atom * >::iterator it;
     
@@ -61,17 +61,17 @@ void ContainerAtom::addChild( Atom * a )
     this->_children.insert( std::pair< std::string, Atom * >( a->getType(), a ) );
 }
 
-bool ContainerAtom::hasChildren( void )
+bool ContainerAtom::hasChildren()
 {
     return _children.size() > 0;
 }
 
-unsigned int ContainerAtom::numberOfChildren( void )
+unsigned int ContainerAtom::numberOfChildren()
 {
     return _children.size();
 }
 
-std::string ContainerAtom::description( void )
+std::string ContainerAtom::description()
 {
     std::string s;
     std::multimap< std::string, Atom * >::iterator it;

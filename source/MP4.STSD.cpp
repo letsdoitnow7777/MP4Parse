@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-STSD::STSD( void )
+STSD::STSD()
 {
     this->_type.append( "STSD" );
 }

@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-CPRT::CPRT( void )
+CPRT::CPRT()
 {
     this->_type.append( "CPRT" );
 }

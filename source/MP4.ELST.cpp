@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-ELST::ELST( void )
+ELST::ELST()
 {
     this->_type.append( "ELST" );
 }

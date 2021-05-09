@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-PDIN::PDIN( void )
+PDIN::PDIN()
 {
     this->_type.append( "PDIN" );
 }

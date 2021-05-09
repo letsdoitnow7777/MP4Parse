@@ -50,10 +50,10 @@ namespace MP4
             
         public:
             
-            File( void ) : ContainerAtom( ( char * )"" )
+            File() : ContainerAtom( ( char * )"" )
             {}
             
-            std::string description( void );
+            std::string description();
     };
 }
 

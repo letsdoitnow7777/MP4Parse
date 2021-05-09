@@ -48,7 +48,7 @@ namespace MP4
             
         public:
             
-            CO64( void );
+            CO64();
             
             void processData(MP4::BinaryStream * stream, size_t length );
     };

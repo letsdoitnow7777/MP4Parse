@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-HDLR::HDLR( void )
+HDLR::HDLR()
 {
     this->_type.append( "HDLR" );
 }

@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-IMIF::IMIF( void )
+IMIF::IMIF()
 {
     this->_type.append( "IMIF" );
 }

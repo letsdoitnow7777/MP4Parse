@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-STZ2::STZ2( void )
+STZ2::STZ2()
 {
     this->_type.append( "STZ2" );
 }

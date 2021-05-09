@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-UDTA::UDTA( void )
+UDTA::UDTA()
 {
     this->_type.append( "UDTA" );
 }

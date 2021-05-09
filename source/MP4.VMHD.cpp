@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-VMHD::VMHD( void )
+VMHD::VMHD()
 {
     this->_type.append( "VMHD" );
 }

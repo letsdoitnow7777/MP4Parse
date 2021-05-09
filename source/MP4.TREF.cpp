@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-TREF::TREF( void )
+TREF::TREF()
 {
     this->_type.append( "TREF" );
 }

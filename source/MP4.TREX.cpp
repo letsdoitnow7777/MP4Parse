@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-TREX::TREX( void )
+TREX::TREX()
 {
     this->_type.append( "TREX" );
 }

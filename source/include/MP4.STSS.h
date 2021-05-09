@@ -48,7 +48,7 @@ namespace MP4
             
         public:
             
-            STSS( void );
+            STSS();
             
             void processData(MP4::BinaryStream * stream, size_t length );
     };

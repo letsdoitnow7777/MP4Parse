@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-SDTP::SDTP( void )
+SDTP::SDTP()
 {
     this->_type.append( "SDTP" );
 }

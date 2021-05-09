@@ -48,7 +48,7 @@ namespace MP4
             
         public:
             
-            TREX( void );
+            TREX();
             
             void processData(MP4::BinaryStream * stream, size_t length );
     };

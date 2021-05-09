@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-SGPD::SGPD( void )
+SGPD::SGPD()
 {
     this->_type.append( "SGPD" );
 }

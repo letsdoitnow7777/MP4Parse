@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-SUBS::SUBS( void )
+SUBS::SUBS()
 {
     this->_type.append( "SUBS" );
 }

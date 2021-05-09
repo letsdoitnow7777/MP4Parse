@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-TFHD::TFHD( void )
+TFHD::TFHD()
 {
     this->_type.append( "TFHD" );
 }

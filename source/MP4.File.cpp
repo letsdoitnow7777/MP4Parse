@@ -33,7 +33,7 @@
 
 using namespace MP4;
 
-std::string File::description( void )
+std::string File::description()
 {
     std::string s;
     std::multimap< std::string, Atom * >::iterator it;

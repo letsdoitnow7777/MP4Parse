@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-CTTS::CTTS( void )
+CTTS::CTTS()
 {
     this->_type.append( "CTTS" );
 }

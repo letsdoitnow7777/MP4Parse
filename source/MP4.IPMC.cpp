@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-IPMC::IPMC( void )
+IPMC::IPMC()
 {
     this->_type.append( "FREE" );
 }

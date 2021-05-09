@@ -48,7 +48,7 @@ namespace MP4
             
         public:
             
-            IPMC( void );
+            IPMC();
             
             void processData(MP4::BinaryStream * stream, size_t length );
     };

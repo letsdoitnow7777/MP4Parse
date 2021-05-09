@@ -48,7 +48,7 @@ namespace MP4
             
         public:
             
-            SDTP( void );
+            SDTP();
             
             void processData(MP4::BinaryStream * stream, size_t length );
     };

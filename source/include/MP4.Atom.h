@@ -50,11 +50,11 @@ namespace MP4
             
         public:
             
-            virtual ~Atom( void );
+            virtual ~Atom();
             
-            std::string getType( void );
+            std::string getType();
             
-            virtual std::string description( void );
+            virtual std::string description();
 
             Atom* getParent();
             Atom* addParent(Atom*);

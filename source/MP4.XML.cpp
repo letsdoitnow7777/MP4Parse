@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-XML::XML( void )
+XML::XML()
 {
     this->_type.append( "XML" );
 }

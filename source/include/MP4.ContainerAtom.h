@@ -51,13 +51,13 @@ namespace MP4
         public:
             
             ContainerAtom( char * type );
-            ~ContainerAtom( void );
+            ~ContainerAtom();
             
             void addChild( Atom * a );
             Atom* findChild( const std::string &type );
-            bool hasChildren( void );
-            unsigned int numberOfChildren( void );
-            std::string description( void );
+            bool hasChildren();
+            unsigned int numberOfChildren();
+            std::string description();
     };
 }
 

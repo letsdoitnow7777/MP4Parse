@@ -33,12 +33,12 @@
 
 using namespace MP4;
           
-FTYP::FTYP( void )
+FTYP::FTYP()
 {
     this->_type.append( "FTYP" );
 }
 
-FTYP::~FTYP( void )
+FTYP::~FTYP()
 {
     std::vector< std::string * >::iterator it;
     
@@ -48,7 +48,7 @@ FTYP::~FTYP( void )
     }
 }
 
-std::string FTYP::description( void )
+std::string FTYP::description()
 {
     std::string s;
     std::string * brand;

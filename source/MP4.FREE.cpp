@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-FREE::FREE( void )
+FREE::FREE()
 {
     this->_type.append( "FREE" );
 }

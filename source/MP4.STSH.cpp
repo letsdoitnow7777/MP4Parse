@@ -33,7 +33,7 @@
 
 using namespace MP4;
           
-STSH::STSH( void )
+STSH::STSH()
 {
     this->_type.append( "STSH" );
 }
