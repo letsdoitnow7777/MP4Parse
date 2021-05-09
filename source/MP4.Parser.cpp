@@ -41,18 +41,15 @@ Parser::Parser( BinaryStream * binaryStream, MP4::File * file) {
 
 int Parser::Parse()
 {
-    bool                 container;
     uint32_t             length;
     uint64_t             dataLength;
     char                 type[ 5 ];
-    char               * data;
+
     MP4::Atom          * atom;
     MP4::ContainerAtom * containerAtom;
     MP4::ContainerAtom * parentAtom;
-    data          = NULL;
     atom          = NULL;
     containerAtom = NULL;
-    container     = false;
     parentAtom    = this->_file;
     
     memset( type, 0, 5 );
@@ -64,14 +61,10 @@ int Parser::Parse()
         
         this->_stream->read( ( char * )type, 4 );
         
-        if( length == 1 )
-        {
-            dataLength = this->_stream->readBigEndianUnsignedInteger() - 16;
-        }
+        if( length == 1 ) {dataLength = this->_stream->readBigEndianUnsignedInteger() - 16; }
         else
         {
-            dataLength = length - 8;
-        }
+            dataLength = length - 8; }
 
         /* Container atoms */
         if
@@ -91,219 +84,69 @@ int Parser::Parse()
             || strcmp( type, "stbl" ) == 0
             || strcmp( type, "traf" ) == 0
             || strcmp( type, "trak" ) == 0
-        )
-        {
-            containerAtom = new MP4::ContainerAtom( type );
+        ) {containerAtom = new MP4::ContainerAtom( type );
             containerAtom->addParent(parentAtom);
             
             parentAtom->addChild( containerAtom );
 
             parentAtom = containerAtom;
-            
+
             continue;
         }
         
         /* Data atoms */
-        if( strcmp( type, "bxml" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::BXML() );
-        }
-        else if( strcmp( type, "co64" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::CO64() );
-        }
-        else if( strcmp( type, "cprt" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::CPRT() );
-        }
-        else if( strcmp( type, "ctts" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::CTTS() );
-        }
-        else if( strcmp( type, "dref" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::DREF() );
-        }
-        else if( strcmp( type, "elst" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::ELST() );
-        }
-        else if( strcmp( type, "free" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::FREE() );
-        }
-        else if( strcmp( type, "frma" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::FRMA() );
-        }
-        else if( strcmp( type, "ftyp" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::FTYP() );
-        }
-        else if( strcmp( type, "hdlr" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::HDLR() );
-        }
-        else if( strcmp( type, "hmhd" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::HMHD() );
-        }
-        else if( strcmp( type, "iinf" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::IINF() );
-        }
-        else if( strcmp( type, "iloc" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::ILOC() );
-        }
-        else if( strcmp( type, "imif" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::IMIF() );
-        }
-        else if( strcmp( type, "ipmc" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::IPMC() );
-        }
-        else if( strcmp( type, "mdat" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::MDAT() );
-        }
-        else if( strcmp( type, "mdhd" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::MDHD() );
-        }
-        else if( strcmp( type, "mehd" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::MEHD() );
-        }
-        else if( strcmp( type, "mfhd" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::MFHD() );
-        }
-        else if( strcmp( type, "mfro" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::MFRO() );
-        }
-        else if( strcmp( type, "mvhd" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::MVHD() );
-        }
-        else if( strcmp( type, "padb" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::PADB() );
-        }
-        else if( strcmp( type, "pdin" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::PDIN() );
-        }
-        else if( strcmp( type, "pitm" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::PITM() );
-        }
-        else if( strcmp( type, "sbgp" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::SBGP() );
-        }
-        else if( strcmp( type, "schi" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::SCHI() );
-        }
-        else if( strcmp( type, "schm" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::SCHM() );
-        }
-        else if( strcmp( type, "sdtp" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::SDTP() );
-        }
-        else if( strcmp( type, "sgpd" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::SGPD() );
-        }
-        else if( strcmp( type, "smhd" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::SMHD() );
-        }
-        else if( strcmp( type, "subs" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::SUBS() );
-        }
-        else if( strcmp( type, "stsd" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::STSD() );
-        }
-        else if( strcmp( type, "stco" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::STCO() );
-        }
-        else if( strcmp( type, "stdp" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::STDP() );
-        }
-        else if( strcmp( type, "stsc" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::STSC() );
-        }
-        else if( strcmp( type, "stsh" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::STSH() );
-        }
-        else if( strcmp( type, "stss" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::STSS() );
-        }
-        else if( strcmp( type, "stsz" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::STSZ() );
-        }
-        else if( strcmp( type, "stts" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::STTS() );
-        }
-        else if( strcmp( type, "stz2" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::STZ2() );
-        }
-        else if( strcmp( type, "tfhd" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::TFHD() );
-        }
-        else if( strcmp( type, "tfra" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::TFRA() );
-        }
-        else if( strcmp( type, "tkhd" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::TKHD() );
-        }
-        else if( strcmp( type, "tref" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::TREF() );
-        }
-        else if( strcmp( type, "trex" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::TREX() );
-        }
-        else if( strcmp( type, "trun" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::TRUN() );
-        }
-        else if( strcmp( type, "udta" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::UDTA() );
-        }
-        else if( strcmp( type, "vmhd" ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::VMHD() );
-        }
-        else if( strcmp( type, "xml " ) == 0 )
-        {
-            atom = ( MP4::Atom * )( new MP4::XML() );
-        }
+        if     ( strcmp( type, "bxml" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::BXML() ); }
+        else if( strcmp( type, "co64" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::CO64() ); }
+        else if( strcmp( type, "cprt" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::CPRT() ); }
+        else if( strcmp( type, "ctts" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::CTTS() ); }
+        else if( strcmp( type, "dref" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::DREF() ); }
+        else if( strcmp( type, "elst" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::ELST() ); }
+        else if( strcmp( type, "free" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::FREE() ); }
+        else if( strcmp( type, "frma" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::FRMA() ); }
+        else if( strcmp( type, "ftyp" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::FTYP() ); }
+        else if( strcmp( type, "hdlr" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::HDLR() ); }
+        else if( strcmp( type, "hmhd" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::HMHD() ); }
+        else if( strcmp( type, "iinf" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::IINF() ); }
+        else if( strcmp( type, "iloc" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::ILOC() ); }
+        else if( strcmp( type, "imif" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::IMIF() ); }
+        else if( strcmp( type, "ipmc" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::IPMC() ); }
+        else if( strcmp( type, "mdat" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::MDAT() ); }
+        else if( strcmp( type, "mdhd" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::MDHD() ); }
+        else if( strcmp( type, "mehd" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::MEHD() ); }
+        else if( strcmp( type, "mfhd" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::MFHD() ); }
+        else if( strcmp( type, "mfro" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::MFRO() ); }
+        else if( strcmp( type, "mvhd" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::MVHD() ); }
+        else if( strcmp( type, "padb" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::PADB() ); }
+        else if( strcmp( type, "pdin" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::PDIN() ); }
+        else if( strcmp( type, "pitm" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::PITM() ); }
+        else if( strcmp( type, "sbgp" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::SBGP() ); }
+        else if( strcmp( type, "schi" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::SCHI() ); }
+        else if( strcmp( type, "schm" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::SCHM() ); }
+        else if( strcmp( type, "sdtp" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::SDTP() ); }
+        else if( strcmp( type, "sgpd" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::SGPD() ); }
+        else if( strcmp( type, "smhd" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::SMHD() ); }
+        else if( strcmp( type, "subs" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::SUBS() ); }
+        else if( strcmp( type, "stsd" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::STSD() ); }
+        else if( strcmp( type, "stco" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::STCO() ); }
+        else if( strcmp( type, "stdp" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::STDP() ); }
+        else if( strcmp( type, "stsc" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::STSC() ); }
+        else if( strcmp( type, "stsh" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::STSH() ); }
+        else if( strcmp( type, "stss" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::STSS() ); }
+        else if( strcmp( type, "stsz" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::STSZ() ); }
+        else if( strcmp( type, "stts" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::STTS() ); }
+        else if( strcmp( type, "stz2" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::STZ2() ); }
+        else if( strcmp( type, "tfhd" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::TFHD() ); }
+        else if( strcmp( type, "tfra" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::TFRA() ); }
+        else if( strcmp( type, "tkhd" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::TKHD() ); }
+        else if( strcmp( type, "tref" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::TREF() ); }
+        else if( strcmp( type, "trex" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::TREX() ); }
+        else if( strcmp( type, "trun" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::TRUN() ); }
+        else if( strcmp( type, "udta" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::UDTA() ); }
+        else if( strcmp( type, "vmhd" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::VMHD() ); }
+        else if( strcmp( type, "xml " ) == 0 ) {atom = ( MP4::Atom * )( new MP4::XML() ); }
         else
         {
-            atom = new MP4::UnknownAtom( type );
-        }
+            atom = new MP4::UnknownAtom( type ); }
 
         atom->addParent(parentAtom);
 

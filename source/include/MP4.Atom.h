@@ -34,6 +34,7 @@
 #define _MP4_ATOM_
 
 #include "mp4.h"
+#include "MP4.BinaryStream.h"
 
 namespace MP4
 {
@@ -59,6 +60,8 @@ namespace MP4
             Atom* getParent();
             Atom* addParent(Atom*);
             std::string countIndent();
+
+            virtual void processData(MP4::BinaryStream * stream, size_t length ) = 0;
     };
 }
 

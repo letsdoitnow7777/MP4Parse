@@ -40,24 +40,21 @@ namespace MP4
 {
     class ContainerAtom : public Atom
     {
-        private:
-            
-            
-            
-        protected:
-            
-            std::multimap< std::string, Atom * > _children;
-            
-        public:
-            
-            ContainerAtom( char * type );
-            ~ContainerAtom();
-            
-            void addChild( Atom * a );
-            Atom* findChild( const std::string &type );
-            bool hasChildren();
-            unsigned int numberOfChildren();
-            std::string description();
+    private:
+    protected:
+        std::multimap< std::string, Atom * > _children;
+
+    public:
+        ContainerAtom( char * type );
+        ~ContainerAtom();
+
+        void addChild( Atom * a );
+        Atom* findChild( const std::string &type );
+        bool hasChildren();
+        unsigned int numberOfChildren();
+        virtual void processData(MP4::BinaryStream * stream, size_t length );
+
+        std::string description();
     };
 }
 

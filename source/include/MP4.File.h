@@ -41,13 +41,7 @@ namespace MP4
     class File : public ContainerAtom
     {
         private:
-            
-            
-            
         protected:
-            
-            
-            
         public:
             
             File() : ContainerAtom( ( char * )"" )

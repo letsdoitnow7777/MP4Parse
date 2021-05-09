@@ -42,7 +42,7 @@ std::string File::description()
     
     for( it = this->_children.begin(); it != this->_children.end(); ++it )
     {
-        s.append( ( ( Atom * )( it->second ) )->description() );
+        s.append(it->second->description());
     }
     
     return s;
