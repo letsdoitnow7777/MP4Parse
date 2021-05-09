@@ -73,7 +73,7 @@ std::string FTYP::description()
     return o.str();
 }
 
-void FTYP::processData(MP4::BinaryStream * stream, size_t length )
+void FTYP::processData(MP4::IBinaryStream * stream, size_t length )
 {
     std::string * s;
     char brand[ 5 ];

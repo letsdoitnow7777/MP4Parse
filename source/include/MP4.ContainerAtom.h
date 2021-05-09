@@ -52,7 +52,7 @@ namespace MP4
         Atom* findChild( const std::string &type );
         bool hasChildren();
         unsigned int numberOfChildren();
-        void processData(MP4::BinaryStream * stream, size_t length ) override;
+        void processData(MP4::IBinaryStream * stream, size_t length ) override;
 
         std::string description() override;
     };

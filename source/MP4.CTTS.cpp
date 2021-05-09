@@ -39,7 +39,7 @@ CTTS::CTTS()
 }
 
 
-void CTTS::processData(MP4::BinaryStream * stream, size_t length )
+void CTTS::processData(MP4::IBinaryStream * stream, size_t length )
 {
     stream->ignore( length );
 }

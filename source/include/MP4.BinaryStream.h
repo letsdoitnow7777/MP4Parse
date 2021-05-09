@@ -39,27 +39,28 @@ namespace MP4
 {
 
     class IBinaryStream {
-        virtual uint16_t readBigEndianUnsignedShort();
-        virtual uint16_t readLittleEndianUnsignedShort();
+    public:
+        virtual uint16_t readBigEndianUnsignedShort() = 0;
+        virtual uint16_t readLittleEndianUnsignedShort() = 0;
 
-        virtual uint32_t readBigEndianUnsignedInteger();
-        virtual uint32_t readLittleEndianUnsignedInteger();
+        virtual uint32_t readBigEndianUnsignedInteger() = 0;
+        virtual uint32_t readLittleEndianUnsignedInteger() = 0;
 
-        virtual uint64_t readBigEndianUnsignedLong();
+        virtual uint64_t readBigEndianUnsignedLong() = 0;
 
-        virtual float readBigEndianFixedPoint( unsigned int integerLength, unsigned int fractionalLength );
+        virtual float readBigEndianFixedPoint( unsigned int integerLength, unsigned int fractionalLength ) = 0;
 
-        virtual std::string * readBigEndianISO639Code();
+        virtual std::string * readBigEndianISO639Code() = 0;
 
-        virtual void readMatrix( matrix * m );
+        virtual void readMatrix( matrix * m ) = 0;
 
-        virtual bool eof() const;
-        virtual std::istream & get( char * s, std::streamsize n );
-        virtual std::istream & ignore( std::streamsize n = 1, int delim = EOF );
-        virtual std::istream & read( char * s, std::streamsize n );
+        virtual bool eof() const = 0;
+        virtual std::istream & get( char * s, std::streamsize n ) = 0;
+        virtual std::istream & ignore( std::streamsize n = 1, int delim = EOF ) = 0;
+        virtual std::istream & read( char * s, std::streamsize n ) = 0;
     };
 
-    class BinaryStream
+    class BinaryStream: public IBinaryStream
     {
     private:
 
@@ -67,7 +68,6 @@ namespace MP4
         std::ifstream stream;
 
     public:
-        BinaryStream() = delete;
         explicit BinaryStream(char * filename );
         virtual ~BinaryStream();
 
@@ -76,34 +76,34 @@ namespace MP4
 
         uint16_t readUnsignedShort();
         int16_t readSignedShort();
-        uint16_t readBigEndianUnsignedShort();
-        uint16_t readLittleEndianUnsignedShort();
+        uint16_t readBigEndianUnsignedShort() override;
+        uint16_t readLittleEndianUnsignedShort() override;
 
         uint32_t readUnsignedInteger();
         int32_t readSignedInteger();
-        uint32_t readBigEndianUnsignedInteger();
-        uint32_t readLittleEndianUnsignedInteger();
+        uint32_t readBigEndianUnsignedInteger() override;
+        uint32_t readLittleEndianUnsignedInteger() override;
 
         uint64_t readUnsignedLong();
         int64_t readSignedLong();
-        uint64_t readBigEndianUnsignedLong();
+        uint64_t readBigEndianUnsignedLong() override;
         uint64_t readLittleEndianUnsignedLong();
 
         float readFloat();
         double readDouble();
 
-        float readBigEndianFixedPoint( unsigned int integerLength, unsigned int fractionalLength );
+        float readBigEndianFixedPoint( unsigned int integerLength, unsigned int fractionalLength ) override;
         float readLittleEndianFixedPoint( unsigned int integerLength, unsigned int fractionalLength );
 
-        std::string * readBigEndianISO639Code();
+        std::string * readBigEndianISO639Code() override;
         std::string * readNULLTerminatedString();
         std::string * readUTF8String();
         std::string * readLongUTF8String();
 
-        void readMatrix( matrix * m );
+        void readMatrix( matrix * m ) override;
 
         bool good() const;
-        virtual bool eof() const;
+        bool eof() const override;
         bool fail() const;
         bool bad() const;
         int peek();
@@ -113,14 +113,14 @@ namespace MP4
         std::streamsize readsome( char * s, std::streamsize n );
         std::streamsize gcount() const;
         std::istream & get( char & c );
-        virtual std::istream & get( char * s, std::streamsize n );
+        std::istream & get( char * s, std::streamsize n ) override;
         std::istream & get( char * s, std::streamsize n, char delim );
         std::istream & get( std::streambuf & sb );
         std::istream & get( std::streambuf & sb, char delim );
         std::istream & getline(char * s, std::streamsize n );
         std::istream & getline(char * s, std::streamsize n, char delim );
-        virtual std::istream & ignore( std::streamsize n = 1, int delim = EOF );
-        virtual std::istream & read( char * s, std::streamsize n );
+        std::istream & ignore( std::streamsize n = 1, int delim = EOF ) override;
+        std::istream & read( char * s, std::streamsize n ) override;
         std::istream & putback( char c );
         std::istream & unget();
         std::istream & seekg( std::streampos pos );

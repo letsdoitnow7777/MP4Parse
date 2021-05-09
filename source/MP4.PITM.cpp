@@ -39,7 +39,7 @@ PITM::PITM()
 }
 
 
-void PITM::processData(MP4::BinaryStream * stream, size_t length )
+void PITM::processData(MP4::IBinaryStream * stream, size_t length )
 {
     stream->ignore( length );
 }

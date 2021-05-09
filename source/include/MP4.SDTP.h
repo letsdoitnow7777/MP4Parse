@@ -50,7 +50,7 @@ namespace MP4
             
             SDTP();
             
-            void processData(MP4::BinaryStream * stream, size_t length );
+            void processData(MP4::IBinaryStream * stream, size_t length );
     };
 }
 

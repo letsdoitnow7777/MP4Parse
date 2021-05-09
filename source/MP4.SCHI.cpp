@@ -39,7 +39,7 @@ SCHI::SCHI()
 }
 
 
-void SCHI::processData(MP4::BinaryStream * stream, size_t length )
+void SCHI::processData(MP4::IBinaryStream * stream, size_t length )
 {
     stream->ignore( length );
 }

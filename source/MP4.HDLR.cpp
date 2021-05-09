@@ -39,7 +39,7 @@ HDLR::HDLR()
 }
 
 
-void HDLR::processData(MP4::BinaryStream * stream, size_t length )
+void HDLR::processData(MP4::IBinaryStream * stream, size_t length )
 {
     stream->ignore( length );
 }

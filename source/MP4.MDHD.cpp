@@ -53,7 +53,7 @@ std::string MDHD::description()
     return o.str();
 }
 
-void MDHD::processData(MP4::BinaryStream * stream, size_t length )
+void MDHD::processData(MP4::IBinaryStream * stream, size_t length )
 {
     size_t parsedLength;
     

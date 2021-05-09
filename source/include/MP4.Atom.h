@@ -61,7 +61,7 @@ namespace MP4
             Atom* addParent(Atom*);
             std::string countIndent();
 
-            virtual void processData(MP4::BinaryStream * stream, size_t length ) = 0;
+            virtual void processData(MP4::IBinaryStream * stream, size_t length ) = 0;
     };
 }
 

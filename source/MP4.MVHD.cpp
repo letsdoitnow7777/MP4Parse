@@ -38,7 +38,7 @@ MVHD::MVHD()
     this->_type.append( "MVHD" );
 }
 
-void MVHD::processData(MP4::BinaryStream * stream, size_t length )
+void MVHD::processData(MP4::IBinaryStream * stream, size_t length )
 {
     FullBox::processData( stream, length );
     

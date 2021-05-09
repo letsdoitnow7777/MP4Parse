@@ -39,7 +39,7 @@ STSS::STSS()
 }
 
 
-void STSS::processData(MP4::BinaryStream * stream, size_t length )
+void STSS::processData(MP4::IBinaryStream * stream, size_t length )
 {
     stream->ignore( length );
 }

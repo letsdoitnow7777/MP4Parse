@@ -51,11 +51,11 @@ namespace MP4
     private:
 
     protected:
-        BinaryStream * _stream;
+        IBinaryStream * _stream;
         ContainerAtom * _container;
             
     public:
-        explicit Parser( BinaryStream * binaryStream, MP4::ContainerAtom * containerAtom);
+        Parser( IBinaryStream * binaryStream, MP4::ContainerAtom * containerAtom);
         ~Parser();
 
         int Parse() override;

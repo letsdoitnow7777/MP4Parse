@@ -39,7 +39,7 @@ TFHD::TFHD()
 }
 
 
-void TFHD::processData(MP4::BinaryStream * stream, size_t length )
+void TFHD::processData(MP4::IBinaryStream * stream, size_t length )
 {
     stream->ignore( length );
 }

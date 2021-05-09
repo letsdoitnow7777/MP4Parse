@@ -39,7 +39,7 @@ STDP::STDP()
 }
 
 
-void STDP::processData(MP4::BinaryStream * stream, size_t length )
+void STDP::processData(MP4::IBinaryStream * stream, size_t length )
 {
     stream->ignore( length );
 }

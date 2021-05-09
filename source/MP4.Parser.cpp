@@ -34,7 +34,7 @@
 
 using namespace MP4;
 
-Parser::Parser( BinaryStream * binaryStream, MP4::ContainerAtom * containerAtom) {
+Parser::Parser( IBinaryStream * binaryStream, MP4::ContainerAtom * containerAtom) {
     this->_stream = binaryStream;
     this->_container   = containerAtom;
 }
