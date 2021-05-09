@@ -45,16 +45,16 @@ namespace MP4
         std::multimap< std::string, Atom * > _children;
 
     public:
-        ContainerAtom( char * type );
-        ~ContainerAtom();
+        explicit ContainerAtom( char * type );
+        ~ContainerAtom() override;
 
         void addChild( Atom * a );
         Atom* findChild( const std::string &type );
         bool hasChildren();
         unsigned int numberOfChildren();
-        virtual void processData(MP4::BinaryStream * stream, size_t length );
+        void processData(MP4::BinaryStream * stream, size_t length ) override;
 
-        std::string description();
+        std::string description() override;
     };
 }
 

@@ -34,7 +34,7 @@
 
 int main( int argc, char * argv[] )
 {
-    MP4::Parser * parser;
+    MP4::IParser * parser;
     
     if( argc != 2 )
     {

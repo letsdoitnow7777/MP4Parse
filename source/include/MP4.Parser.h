@@ -40,19 +40,25 @@
 namespace MP4
 {
 
-    class Parser
+    class IParser {
+    public:
+        virtual int Parse() = 0;
+        // todo need virtual destructor? fix
+    };
+
+    class Parser : public IParser
     {
     private:
 
     protected:
         BinaryStream * _stream;
-        File         * _file;
+        ContainerAtom * _container;
             
     public:
-        explicit Parser( BinaryStream * binaryStream, MP4::File * file);
-        virtual ~Parser();
+        explicit Parser( BinaryStream * binaryStream, MP4::ContainerAtom * containerAtom);
+        ~Parser();
 
-        int Parse();
+        int Parse() override;
     };
 }
 

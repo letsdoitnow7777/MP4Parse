@@ -34,9 +34,15 @@
 
 using namespace MP4;
 
-Parser::Parser( BinaryStream * binaryStream, MP4::File * file) {
+Parser::Parser( BinaryStream * binaryStream, MP4::ContainerAtom * containerAtom) {
     this->_stream = binaryStream;
-    this->_file   = file;
+    this->_container   = containerAtom;
+}
+
+Parser::~Parser()
+{
+    delete this->_stream;
+    delete this->_container;
 }
 
 int Parser::Parse()
@@ -50,17 +56,17 @@ int Parser::Parse()
     MP4::ContainerAtom * parentAtom;
     atom          = NULL;
     containerAtom = NULL;
-    parentAtom    = this->_file;
+    parentAtom    = this->_container;
     
     memset( type, 0, 5 );
-    
+
     while( !this->_stream->eof() )
     {
         length     = this->_stream->readBigEndianUnsignedInteger();
         dataLength = 0;
-        
+
         this->_stream->read( ( char * )type, 4 );
-        
+
         if( length == 1 ) {dataLength = this->_stream->readBigEndianUnsignedInteger() - 16; }
         else
         {
@@ -68,32 +74,37 @@ int Parser::Parse()
 
         /* Container atoms */
         if
-        (
-               strcmp( type, "dinf" ) == 0
-            || strcmp( type, "edts" ) == 0
-            || strcmp( type, "ipro" ) == 0
-            || strcmp( type, "mdia" ) == 0
-            || strcmp( type, "meta" ) == 0
-            || strcmp( type, "mfra" ) == 0
-            || strcmp( type, "minf" ) == 0
-            || strcmp( type, "moof" ) == 0
-            || strcmp( type, "moov" ) == 0
-            || strcmp( type, "mvex" ) == 0
-            || strcmp( type, "sinf" ) == 0
-            || strcmp( type, "skip" ) == 0
-            || strcmp( type, "stbl" ) == 0
-            || strcmp( type, "traf" ) == 0
-            || strcmp( type, "trak" ) == 0
-        ) {containerAtom = new MP4::ContainerAtom( type );
+                (
+                strcmp( type, "dinf" ) == 0
+                || strcmp( type, "edts" ) == 0
+                || strcmp( type, "ipro" ) == 0
+                || strcmp( type, "mdia" ) == 0
+                || strcmp( type, "meta" ) == 0
+                || strcmp( type, "mfra" ) == 0
+                || strcmp( type, "minf" ) == 0
+                || strcmp( type, "moof" ) == 0
+                || strcmp( type, "moov" ) == 0
+                || strcmp( type, "mvex" ) == 0
+                || strcmp( type, "sinf" ) == 0
+                || strcmp( type, "skip" ) == 0
+                || strcmp( type, "stbl" ) == 0
+                || strcmp( type, "traf" ) == 0
+                || strcmp( type, "trak" ) == 0
+                ) {
+            containerAtom = new MP4::ContainerAtom( type );
             containerAtom->addParent(parentAtom);
-            
+
             parentAtom->addChild( containerAtom );
 
             parentAtom = containerAtom;
 
+            printf("container, size %d\n", length);
+            containerAtom->processData(this->_stream, dataLength);
+
+
             continue;
         }
-        
+
         /* Data atoms */
         if     ( strcmp( type, "bxml" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::BXML() ); }
         else if( strcmp( type, "co64" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::CO64() ); }
@@ -146,22 +157,17 @@ int Parser::Parse()
         else if( strcmp( type, "xml " ) == 0 ) {atom = ( MP4::Atom * )( new MP4::XML() ); }
         else
         {
-            atom = new MP4::UnknownAtom( type ); }
+            atom = new MP4::UnknownAtom( type );
+        }
 
         atom->addParent(parentAtom);
 
         parentAtom->addChild( atom );
-        
-        ( ( MP4::DataAtom * )atom )->processData( this->_stream, dataLength );
+
+        atom->processData( this->_stream, dataLength );
     }
-    
-    std::cout << this->_file->description();
+
+    std::cout << this->_container->description();
 
     return 0;
-}
-
-Parser::~Parser()
-{
-    delete this->_stream;
-    delete this->_file;
 }
