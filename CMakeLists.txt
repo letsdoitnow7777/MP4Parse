@@ -1,0 +1,67 @@
+
+set(CMAKE_CXX_STANDARD 11)
+
+set(TARGET mp4parser)
+project(${TARGET})
+
+add_executable(${TARGET} source/MP4.Atom.cpp
+        source/MP4.BXML.cpp
+        source/MP4.BinaryStream.cpp
+        source/MP4.CO64.cpp
+        source/MP4.CPRT.cpp
+        source/MP4.CTTS.cpp
+        source/MP4.ContainerAtom.cpp
+        source/MP4.DREF.cpp
+        source/MP4.DataAtom.cpp
+        source/MP4.ELST.cpp
+        source/MP4.FREE.cpp
+        source/MP4.FRMA.cpp
+        source/MP4.FTYP.cpp
+        source/MP4.File.cpp
+        source/MP4.FullBox.cpp
+        source/MP4.HDLR.cpp
+        source/MP4.HMHD.cpp
+        source/MP4.IINF.cpp
+        source/MP4.ILOC.cpp
+        source/MP4.IMIF.cpp
+        source/MP4.IPMC.cpp
+        source/MP4.MDAT.cpp
+        source/MP4.MDHD.cpp
+        source/MP4.MEHD.cpp
+        source/MP4.MFHD.cpp
+        source/MP4.MFRO.cpp
+        source/MP4.MVHD.cpp
+        source/MP4.PADB.cpp
+        source/MP4.PDIN.cpp
+        source/MP4.PITM.cpp
+        source/MP4.Parser.cpp
+        source/MP4.SBGP.cpp
+        source/MP4.SCHI.cpp
+        source/MP4.SCHM.cpp
+        source/MP4.SDTP.cpp
+        source/MP4.SGPD.cpp
+        source/MP4.SMHD.cpp
+        source/MP4.STCO.cpp
+        source/MP4.STDP.cpp
+        source/MP4.STSC.cpp
+        source/MP4.STSD.cpp
+        source/MP4.STSH.cpp
+        source/MP4.STSS.cpp
+        source/MP4.STSZ.cpp
+        source/MP4.STTS.cpp
+        source/MP4.STZ2.cpp
+        source/MP4.SUBS.cpp
+        source/MP4.TFHD.cpp
+        source/MP4.TFRA.cpp
+        source/MP4.TKHD.cpp
+        source/MP4.TREF.cpp
+        source/MP4.TREX.cpp
+        source/MP4.TRUN.cpp
+        source/MP4.UDTA.cpp
+        source/MP4.UnknownAtom.cpp
+        source/MP4.VMHD.cpp
+        source/MP4.XML.cpp
+        source/mp4parse.cpp
+        )
+
+include_directories(source/include)
