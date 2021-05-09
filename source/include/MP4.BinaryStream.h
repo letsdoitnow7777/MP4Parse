@@ -37,17 +37,36 @@
 
 namespace MP4
 {
+
+    class IBinaryStream {
+        virtual uint16_t readBigEndianUnsignedShort();
+        virtual uint16_t readLittleEndianUnsignedShort();
+
+        virtual uint32_t readBigEndianUnsignedInteger();
+        virtual uint32_t readLittleEndianUnsignedInteger();
+
+        virtual uint64_t readBigEndianUnsignedLong();
+
+        virtual float readBigEndianFixedPoint( unsigned int integerLength, unsigned int fractionalLength );
+
+        virtual std::string * readBigEndianISO639Code();
+
+        virtual void readMatrix( matrix * m );
+
+        virtual bool eof() const;
+        virtual std::istream & get( char * s, std::streamsize n );
+        virtual std::istream & ignore( std::streamsize n = 1, int delim = EOF );
+        virtual std::istream & read( char * s, std::streamsize n );
+    };
+
     class BinaryStream
     {
     private:
 
-
     protected:
-
         std::ifstream stream;
 
     public:
-
         BinaryStream() = delete;
         explicit BinaryStream(char * filename );
         virtual ~BinaryStream();

@@ -166,8 +166,5 @@ int Parser::Parse()
 
         atom->processData( this->_stream, dataLength );
     }
-
-    std::cout << this->_container->description();
-
     return 0;
 }

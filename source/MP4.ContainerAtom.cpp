@@ -30,6 +30,7 @@
 /* $Id$ */
 
 #include "MP4.ContainerAtom.h"
+#include "MP4.Parser.h"
 
 using namespace MP4;
 
@@ -122,5 +123,6 @@ Atom* ContainerAtom::findChild( const std::string &type )
 
 void ContainerAtom::processData(MP4::BinaryStream *stream, size_t length) {
     printf("Container atom : process data. lentgh %d\n", (int)length);
-    stream->ignore(length);
+    MP4::IParser * parser = new MP4::Parser(stream, this);
+    parser->Parse();
 }
