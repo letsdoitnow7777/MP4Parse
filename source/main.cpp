@@ -40,8 +40,12 @@ int main( int argc, char * argv[] )
     {
         std::cout << "Usage: " << argv[ 0 ] << " FILENAME\n";
     }
-    
-    parser = new MP4::Parser( argv[ 1 ] );
+
+    auto mp4file = new MP4::File();
+    auto bitStream = new MP4::BinaryStream(argv[1]);
+    parser = new MP4::Parser(bitStream, mp4file);
+
+    parser->Parse();
     
     delete parser;
     

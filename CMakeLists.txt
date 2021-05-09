@@ -61,7 +61,7 @@ add_executable(${TARGET} source/MP4.Atom.cpp
         source/MP4.UnknownAtom.cpp
         source/MP4.VMHD.cpp
         source/MP4.XML.cpp
-        source/mp4parse.cpp
+        source/main.cpp
         )
 
 include_directories(source/include)

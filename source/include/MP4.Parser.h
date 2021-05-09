@@ -56,9 +56,9 @@ namespace MP4
             NoFileName  = 0x00
         };
 
-        ParserException( void );
+        ParserException;
         ParserException( unsigned int c );
-        virtual const char * what( void ) const throw();
+        virtual const char * what const throw();
     };
     
     class Parser
@@ -70,9 +70,10 @@ namespace MP4
         File         * _file;
             
     public:
-        Parser( void );
-        explicit Parser( char * filename );
-        ~Parser( void );
+        explicit Parser( BinaryStream * binaryStream, MP4::File * file);
+        virtual ~Parser();
+
+        int Parse();
     };
 }
 

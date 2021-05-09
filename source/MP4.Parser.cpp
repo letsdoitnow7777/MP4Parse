@@ -34,7 +34,7 @@
 
 using namespace MP4;
 
-ParserException::ParserException( void )
+ParserException::ParserException
 {
     this->code = -1;
 }
@@ -44,7 +44,7 @@ ParserException::ParserException( unsigned int c )
     this->code = c;
 }
 
-const char * ParserException::what( void ) const throw()
+const char * ParserException::what const throw()
 {
     switch( this->code )
     {
@@ -56,14 +56,19 @@ const char * ParserException::what( void ) const throw()
     return "Unknown exception";
 }
 
-Parser::Parser( void )
+Parser::Parser
 {
     ParserException e = ParserException( ParserException::NoFileName );
     
     throw e;
 }
 
-Parser::Parser( char * filename )
+Parser::Parser( BinaryStream * binaryStream, MP4::File * file) {
+    this->_stream = ;
+    this->_file   = new MP4::File();
+}
+
+int Parser::Parse()
 {
     bool                 container;
     uint32_t             length;
@@ -73,9 +78,6 @@ Parser::Parser( char * filename )
     MP4::Atom          * atom;
     MP4::ContainerAtom * containerAtom;
     MP4::ContainerAtom * parentAtom;
-    
-    this->_stream = new BinaryStream(filename );
-    this->_file   = new MP4::File();
     data          = NULL;
     atom          = NULL;
     containerAtom = NULL;
@@ -340,9 +342,11 @@ Parser::Parser( char * filename )
     }
     
     std::cout << this->_file->description();
+
+    return 0;
 }
 
-Parser::~Parser( void )
+Parser::~Parser()
 {
     delete this->_stream;
     delete this->_file;

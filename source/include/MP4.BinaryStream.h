@@ -55,9 +55,9 @@ namespace MP4
                 OpenError  = 0x01
             };
             
-            BinaryStreamException( void );
+            BinaryStreamException;
             BinaryStreamException( unsigned int c );
-            virtual const char * what( void ) const throw();
+            virtual const char * what const throw();
     };
     
     class BinaryStream
@@ -71,51 +71,51 @@ namespace MP4
 
     public:
 
-        BinaryStream( void ) = delete;
+        BinaryStream = delete;
         explicit BinaryStream(char * filename );
-        ~BinaryStream( void );
+        virtual ~BinaryStream;
 
-        uint8_t readUnsignedChar( void );
-        int8_t readSignedChar( void );
+        uint8_t readUnsignedChar;
+        int8_t readSignedChar;
 
-        uint16_t readUnsignedShort( void );
-        int16_t readSignedShort( void );
-        uint16_t readBigEndianUnsignedShort( void );
-        uint16_t readLittleEndianUnsignedShort( void );
+        uint16_t readUnsignedShort;
+        int16_t readSignedShort;
+        uint16_t readBigEndianUnsignedShort;
+        uint16_t readLittleEndianUnsignedShort;
 
-        uint32_t readUnsignedInteger( void );
-        int32_t readSignedInteger( void );
-        uint32_t readBigEndianUnsignedInteger( void );
-        uint32_t readLittleEndianUnsignedInteger( void );
+        uint32_t readUnsignedInteger;
+        int32_t readSignedInteger;
+        uint32_t readBigEndianUnsignedInteger;
+        uint32_t readLittleEndianUnsignedInteger;
 
-        uint64_t readUnsignedLong( void );
-        int64_t readSignedLong( void );
-        uint64_t readBigEndianUnsignedLong( void );
-        uint64_t readLittleEndianUnsignedLong( void );
+        uint64_t readUnsignedLong;
+        int64_t readSignedLong;
+        uint64_t readBigEndianUnsignedLong;
+        uint64_t readLittleEndianUnsignedLong;
 
-        float readFloat( void );
-        double readDouble( void );
+        float readFloat;
+        double readDouble;
 
         float readBigEndianFixedPoint( unsigned int integerLength, unsigned int fractionalLength );
         float readLittleEndianFixedPoint( unsigned int integerLength, unsigned int fractionalLength );
 
-        std::string * readBigEndianISO639Code( void );
-        std::string * readNULLTerminatedString( void );
-        std::string * readUTF8String( void );
-        std::string * readLongUTF8String( void );
+        std::string * readBigEndianISO639Code;
+        std::string * readNULLTerminatedString;
+        std::string * readUTF8String;
+        std::string * readLongUTF8String;
 
         void readMatrix( matrix * m );
 
-        bool good( void ) const;
-        virtual bool eof( void ) const;
-        bool fail( void ) const;
-        bool bad( void ) const;
-        int peek( void );
-        int get( void );
-        int sync( void );
-        std::streampos tellg( void );
+        bool good const;
+        virtual bool eof const;
+        bool fail const;
+        bool bad const;
+        int peek;
+        int get;
+        int sync;
+        std::streampos tellg;
         std::streamsize readsome( char * s, std::streamsize n );
-        std::streamsize gcount( void ) const;
+        std::streamsize gcount const;
         std::istream & get( char & c );
         virtual std::istream & get( char * s, std::streamsize n );
         std::istream & get( char * s, std::streamsize n, char delim );
@@ -126,10 +126,10 @@ namespace MP4
         virtual std::istream & ignore( std::streamsize n = 1, int delim = EOF );
         virtual std::istream & read( char * s, std::streamsize n );
         std::istream & putback( char c );
-        std::istream & unget( void );
+        std::istream & unget;
         std::istream & seekg( std::streampos pos );
         std::istream & seekg( std::streamoff off, std::ios_base::seekdir dir );
-        void clear( void );
+        void clear;
     };
 
 }
