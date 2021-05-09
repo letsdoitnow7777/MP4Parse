@@ -34,38 +34,9 @@
 
 using namespace MP4;
 
-ParserException::ParserException
-{
-    this->code = -1;
-}
-
-ParserException::ParserException( unsigned int c )
-{
-    this->code = c;
-}
-
-const char * ParserException::what const throw()
-{
-    switch( this->code )
-    {
-        case ParserException::NoFileName:
-            
-            return "No input file";
-    }
-    
-    return "Unknown exception";
-}
-
-Parser::Parser
-{
-    ParserException e = ParserException( ParserException::NoFileName );
-    
-    throw e;
-}
-
 Parser::Parser( BinaryStream * binaryStream, MP4::File * file) {
-    this->_stream = ;
-    this->_file   = new MP4::File();
+    this->_stream = binaryStream;
+    this->_file   = file;
 }
 
 int Parser::Parse()

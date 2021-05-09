@@ -39,28 +39,7 @@
 
 namespace MP4
 {
-    class ParserException : public std::exception
-    {
-    private:
 
-
-
-    protected:
-
-        unsigned int code;
-
-    public:
-
-        enum
-        {
-            NoFileName  = 0x00
-        };
-
-        ParserException;
-        ParserException( unsigned int c );
-        virtual const char * what const throw();
-    };
-    
     class Parser
     {
     private:
