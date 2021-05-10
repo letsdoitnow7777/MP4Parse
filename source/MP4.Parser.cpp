@@ -60,22 +60,22 @@ int Parser::Parse()
     
     memset( type, 0, 5 );
 
-    while( !this->_stream->eof() )
+    while (!this->_stream->eof())
     {
         length     = this->_stream->readBigEndianUnsignedInteger();
         dataLength = 0;
 
+        printf("read type\n");
         this->_stream->read( ( char * )type, 4 );
 
         if( length == 1 ) {dataLength = this->_stream->readBigEndianUnsignedInteger() - 16; }
         else
         {
-            dataLength = length - 8; }
+            dataLength = length - 8;
+        }
 
         /* Container atoms */
-        if
-                (
-                strcmp( type, "dinf" ) == 0
+        if       ( strcmp( type, "dinf" ) == 0
                 || strcmp( type, "edts" ) == 0
                 || strcmp( type, "ipro" ) == 0
                 || strcmp( type, "mdia" ) == 0
@@ -90,17 +90,16 @@ int Parser::Parse()
                 || strcmp( type, "stbl" ) == 0
                 || strcmp( type, "traf" ) == 0
                 || strcmp( type, "trak" ) == 0
-                ) {
+                )
+        {
             containerAtom = new MP4::ContainerAtom( type );
-            containerAtom->addParent(parentAtom);
 
+            containerAtom->addParent(parentAtom);
             parentAtom->addChild( containerAtom );
 
-            parentAtom = containerAtom;
-
-            printf("container, size %d\n", length);
+            printf("---parse container atom: %s, size %d\n", type, (int)dataLength);
             containerAtom->processData(this->_stream, dataLength);
-
+            printf("---finished container atom: %s, size %d\n", type, (int)dataLength);
 
             continue;
         }
@@ -157,14 +156,15 @@ int Parser::Parse()
         else if( strcmp( type, "xml " ) == 0 ) {atom = ( MP4::Atom * )( new MP4::XML() ); }
         else
         {
-            atom = new MP4::UnknownAtom( type );
+            atom = new MP4::UnknownAtom(type);
         }
 
         atom->addParent(parentAtom);
+        parentAtom->addChild(atom);
 
-        parentAtom->addChild( atom );
-
-        atom->processData( this->_stream, dataLength );
+        printf("parse usual atom: %s, size %d\n", type, length);
+        atom->processData(this->_stream, dataLength);
     }
+
     return 0;
 }

@@ -54,7 +54,7 @@ ContainerAtom::~ContainerAtom()
 
 void ContainerAtom::addChild( Atom * a )
 {
-    if( a == NULL )
+    if( a == nullptr )
     {
         return;
     }
@@ -64,7 +64,7 @@ void ContainerAtom::addChild( Atom * a )
 
 bool ContainerAtom::hasChildren()
 {
-    return _children.size() > 0;
+    return !_children.empty();
 }
 
 unsigned int ContainerAtom::numberOfChildren()
@@ -122,8 +122,8 @@ Atom* ContainerAtom::findChild( const std::string &type )
 }
 
 void ContainerAtom::processData(MP4::IBinaryStream *stream, size_t length) {
-    printf("Container atom : process data. lentgh %d\n", (int)length);
+    printf("Container atom : process data. type %s lentgh %d\n", _type.c_str(), (int)length);
     auto boundedStream = new MP4::BinaryStreamBounded(stream, length);
-    MP4::IParser * parser = new MP4::Parser(stream, this);
+    MP4::IParser * parser = new MP4::Parser(boundedStream, this);
     parser->Parse();
 }

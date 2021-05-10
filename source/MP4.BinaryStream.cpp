@@ -165,11 +165,11 @@ uint32_t BinaryStream::readLittleEndianUnsignedInteger(void )
 }
 
             
-uint64_t BinaryStream::readUnsignedLong(void )
+uint64_t BinaryStream::readUnsignedLong(IBinaryStream *s)
 {
     uint64_t n;
     
-    this->read( ( char * )&n, 8 );
+    s->read( ( char * )&n, 8 );
     
     return n;
 }
@@ -183,12 +183,12 @@ int64_t BinaryStream::readSignedLong(void )
     return n;
 }
 
-uint64_t BinaryStream::readBigEndianUnsignedLong(void )
+uint64_t BinaryStream::readBigEndianUnsignedLong(IBinaryStream *s)
 {
     uint8_t  c[ 8 ];
     uint64_t n;
     
-    this->read( ( char * )c, 8 );
+    s->read( ( char * )c, 8 );
     
     n = ( uint64_t )c[ 0 ] << 56
       | ( uint64_t )c[ 1 ] << 48
@@ -279,7 +279,7 @@ double BinaryStream::readDouble(void )
     bool     sign;
     int      i;
     
-    binary   = this->readBigEndianUnsignedLong();
+    binary   = this->readBigEndianUnsignedLong(this);
     sign     = binary >> 63;
     exp      = ( ( binary >> 52 ) & 0x7FF );
     mantissa = ( binary & 0xFFFFFFFFFFFFF );
@@ -608,9 +608,9 @@ uint32_t BinaryStreamBounded::readLittleEndianUnsignedInteger()
 
 
 
-uint64_t BinaryStreamBounded::readBigEndianUnsignedLong()
+uint64_t BinaryStreamBounded::readBigEndianUnsignedLong(IBinaryStream *s)
 {
-    return underlyingStream->readBigEndianUnsignedLong();
+    return underlyingStream->readBigEndianUnsignedLong(this);
 }
 
 float BinaryStreamBounded::readBigEndianFixedPoint(unsigned int integerLength, unsigned int fractionalLength )
@@ -625,6 +625,7 @@ std::string * BinaryStreamBounded::readBigEndianISO639Code()
 
 void BinaryStreamBounded::readMatrix(matrix * m )
 {
+
     underlyingStream->readMatrix(m);
 }
 
@@ -637,20 +638,25 @@ bool BinaryStreamBounded::eof() const
 std::istream & BinaryStreamBounded::get(char * s, std::streamsize n )
 {
     int bytesToReturn = std::min(n, long(availableBytes));
+    printf("get %10d, available %10d, returned %10d\n", (int)n, availableBytes, bytesToReturn);
     availableBytes -= bytesToReturn;
+
     return underlyingStream->get(s, bytesToReturn);
 }
 
 std::istream & BinaryStreamBounded::ignore(std::streamsize n, int delim )
 {
     int bytesToReturn = std::min(n, long(availableBytes));
+    printf("ignored %10d, available %10d, returned %10d\n", (int)n, availableBytes, bytesToReturn);
     availableBytes -= bytesToReturn;
+
     return underlyingStream->ignore( bytesToReturn, delim );
 }
 
 std::istream & BinaryStreamBounded::read(char * s, std::streamsize n )
 {
     int bytesToReturn = std::min(n, long(availableBytes));
+    printf("read %10d, available %10d, returned %10d\n", (int)n, availableBytes, bytesToReturn);
     availableBytes -= bytesToReturn;
 
     return underlyingStream->read( s, bytesToReturn );

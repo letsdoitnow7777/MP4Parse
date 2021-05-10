@@ -48,7 +48,7 @@ namespace MP4
         virtual uint32_t readBigEndianUnsignedInteger() = 0;
         virtual uint32_t readLittleEndianUnsignedInteger() = 0;
 
-        virtual uint64_t readBigEndianUnsignedLong() = 0;
+        virtual uint64_t readBigEndianUnsignedLong(IBinaryStream *s) = 0;
 
         virtual float readBigEndianFixedPoint( unsigned int integerLength, unsigned int fractionalLength ) = 0;
 
@@ -86,9 +86,9 @@ namespace MP4
         uint32_t readBigEndianUnsignedInteger() override;
         uint32_t readLittleEndianUnsignedInteger() override;
 
-        uint64_t readUnsignedLong();
+        uint64_t readUnsignedLong(IBinaryStream *s);
         int64_t readSignedLong();
-        uint64_t readBigEndianUnsignedLong() override;
+        uint64_t readBigEndianUnsignedLong(IBinaryStream *s) override;
         uint64_t readLittleEndianUnsignedLong();
 
         float readFloat();
@@ -143,7 +143,7 @@ namespace MP4
         uint32_t readBigEndianUnsignedInteger() override;
         uint32_t readLittleEndianUnsignedInteger() override;
 
-        uint64_t readBigEndianUnsignedLong() override;
+        uint64_t readBigEndianUnsignedLong(IBinaryStream *s) override;
 
         float readBigEndianFixedPoint( unsigned int integerLength, unsigned int fractionalLength ) override;
 

@@ -44,10 +44,10 @@ void MVHD::processData(MP4::IBinaryStream * stream, size_t length )
     
     if( this->_version == 1 )
     {
-        this->_creationTime     = stream->readBigEndianUnsignedLong();
-        this->_modificationTime = stream->readBigEndianUnsignedLong();
+        this->_creationTime     = stream->readBigEndianUnsignedLong(stream);
+        this->_modificationTime = stream->readBigEndianUnsignedLong(stream);
         this->_timeScale        = stream->readBigEndianUnsignedInteger();
-        this->_duration         = stream->readBigEndianUnsignedLong();
+        this->_duration         = stream->readBigEndianUnsignedLong(stream);
         this->_rate             = stream->readBigEndianFixedPoint( 16, 16 );
         this->_volume           = stream->readBigEndianFixedPoint( 8, 8 );
         
