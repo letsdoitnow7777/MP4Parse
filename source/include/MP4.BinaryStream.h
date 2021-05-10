@@ -34,6 +34,7 @@
 #define _MP4_BINARY_STREAM_
 
 #include "mp4.h"
+#include "MP4.BinaryStream.h"
 
 namespace MP4
 {
@@ -131,24 +132,24 @@ namespace MP4
 
     class BinaryStreamBounded : public IBinaryStream{
     private:
-        BinaryStream * underlyingStream;
+        IBinaryStream * underlyingStream;
         int length;
+        int availableBytes;
     public:
-        BinaryStreamBounded() = default;
-        BinaryStreamBounded(BinaryStream *binaryStream, int len);
-//        uint16_t readBigEndianUnsignedShort() override;
-//        uint16_t readLittleEndianUnsignedShort() override;
-//
-//        uint32_t readBigEndianUnsignedInteger() override;
-//        uint32_t readLittleEndianUnsignedInteger() override;
-//
-//        uint64_t readBigEndianUnsignedLong() override;
-//
-//        float readBigEndianFixedPoint( unsigned int integerLength, unsigned int fractionalLength ) override;
-//
-//        std::string * readBigEndianISO639Code() override;
-//
-//        void readMatrix( matrix * m ) override;
+        BinaryStreamBounded(IBinaryStream *binaryStream, int len);
+        uint16_t readBigEndianUnsignedShort() override;
+        uint16_t readLittleEndianUnsignedShort() override;
+
+        uint32_t readBigEndianUnsignedInteger() override;
+        uint32_t readLittleEndianUnsignedInteger() override;
+
+        uint64_t readBigEndianUnsignedLong() override;
+
+        float readBigEndianFixedPoint( unsigned int integerLength, unsigned int fractionalLength ) override;
+
+        std::string * readBigEndianISO639Code() override;
+
+        void readMatrix( matrix * m ) override;
 
         bool eof() const override;
         std::istream & get( char * s, std::streamsize n ) override;

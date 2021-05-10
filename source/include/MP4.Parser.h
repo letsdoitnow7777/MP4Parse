@@ -43,7 +43,7 @@ namespace MP4
     class IParser {
     public:
         virtual int Parse() = 0;
-        // todo need virtual destructor? fix
+        virtual ~IParser() = default;
     };
 
     class Parser : public IParser
@@ -56,7 +56,7 @@ namespace MP4
             
     public:
         Parser( IBinaryStream * binaryStream, MP4::ContainerAtom * containerAtom);
-        ~Parser();
+        ~Parser() override;
 
         int Parse() override;
     };

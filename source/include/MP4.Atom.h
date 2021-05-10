@@ -38,12 +38,16 @@
 
 namespace MP4
 {
+
+    class Descriptable {
+    public:
+        std::string descrypt();
+    };
+
     class Atom
     {
         private:
-            
-            
-            
+
         protected:
             
             Atom * _parent;

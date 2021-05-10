@@ -73,3 +73,7 @@ std::string Atom::description()
 
     return o.str();
 }
+
+std::string Descriptable::descrypt() {
+    return std::string();
+}
