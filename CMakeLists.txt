@@ -9,6 +9,7 @@ add_executable(${TARGET}
         source/M4F.FPS.cpp
         source/M4F.Title.cpp
         source/M4F.FpsRational.cpp
+        source/M4F.SegmentData.cpp
         source/MP4.Atom.cpp
         source/MP4.BXML.cpp
         source/MP4.BinaryStream.cpp

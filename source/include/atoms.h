@@ -93,6 +93,7 @@
 #include "M4F.FPS.h"
 #include "M4F.Title.h"
 #include "M4F.FpsRational.h"
+#include "M4F.SegmentData.h"
 
 
 #endif /* _ATOMS_H_ */
