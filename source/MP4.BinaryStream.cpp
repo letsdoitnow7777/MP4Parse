@@ -101,7 +101,7 @@ namespace MP4{
         return n;
     }
 
-    static uint16_t readLittleEndianUnsignedShort(IBinaryStream *s)
+    uint16_t readLittleEndianUnsignedShort(IBinaryStream *s)
     {
         uint8_t  c[ 2 ];
         uint16_t n;
@@ -148,7 +148,7 @@ namespace MP4{
         return n;
     }
 
-    static uint32_t readLittleEndianUnsignedInteger(IBinaryStream *s)
+    uint32_t readLittleEndianUnsignedInteger(IBinaryStream *s)
     {
         uint8_t  c[ 4 ];
         uint32_t n;
@@ -346,11 +346,11 @@ namespace MP4{
 
         if( integerLength + fractionalLength == 16 )
         {
-            n = readLittleEndianUnsignedShort(s);
+            n = MP4::readLittleEndianUnsignedShort(s);
         }
         else
         {
-            n = readLittleEndianUnsignedInteger(s);
+            n = MP4::readLittleEndianUnsignedInteger(s);
         }
 
         integer        = n >> fractionalLength;

@@ -102,32 +102,32 @@ namespace MP4
 
     uint8_t readUnsignedChar(IBinaryStream* s);
     int8_t readSignedChar(IBinaryStream* s);
-//
-//    uint16_t readUnsignedShort(IBinaryStream* s);
-//    int16_t readSignedShort(IBinaryStream* s);
-//    uint16_t readBigEndianUnsignedShort(IBinaryStream* s);
-//    uint16_t readLittleEndianUnsignedShort(IBinaryStream* s);
-//
-//    uint32_t readUnsignedInteger(IBinaryStream* s);
-//    int32_t readSignedInteger(IBinaryStream* s);
+
+    uint16_t readUnsignedShort(IBinaryStream* s);
+    int16_t readSignedShort(IBinaryStream* s);
+    uint16_t readBigEndianUnsignedShort(IBinaryStream* s);
+    uint16_t readLittleEndianUnsignedShort(IBinaryStream* s);
+
+    uint32_t readUnsignedInteger(IBinaryStream* s);
+    int32_t readSignedInteger(IBinaryStream* s);
     uint32_t readBigEndianUnsignedInteger(IBinaryStream* s);
-//    uint32_t readLittleEndianUnsignedInteger(IBinaryStream* s);
-//
+    uint32_t readLittleEndianUnsignedInteger(IBinaryStream* s);
+
     uint64_t readUnsignedLong(IBinaryStream *s);
     int64_t readSignedLong(IBinaryStream* s);
     uint64_t readBigEndianUnsignedLong(IBinaryStream *s);
-//    uint64_t readLittleEndianUnsignedLong(IBinaryStream* s);
-//
-//    float readFloat(IBinaryStream* s);
-//    double readDouble(IBinaryStream* s);
-//
+    uint64_t readLittleEndianUnsignedLong(IBinaryStream* s);
+
+    float readFloat(IBinaryStream* s);
+    double readDouble(IBinaryStream* s);
+
     float readBigEndianFixedPoint(IBinaryStream* s, unsigned int integerLength, unsigned int fractionalLength );
-//    float readLittleEndianFixedPoint(IBinaryStream* s, unsigned int integerLength, unsigned int fractionalLength );
-//
+    float readLittleEndianFixedPoint(IBinaryStream* s, unsigned int integerLength, unsigned int fractionalLength );
+
     std::string * readBigEndianISO639Code(IBinaryStream* s);
-//    std::string * readNULLTerminatedString(IBinaryStream* s);
-//    std::string * readUTF8String(IBinaryStream* s);
-//    std::string * readLongUTF8String(IBinaryStream* s);
+    std::string * readNULLTerminatedString(IBinaryStream* s);
+    std::string * readUTF8String(IBinaryStream* s);
+    std::string * readLongUTF8String(IBinaryStream* s);
 
     void readMatrix(IBinaryStream* s, matrix * m );
 }

@@ -12,8 +12,7 @@ namespace MP4
     class BTRT : DataAtom
     {
     private:
-        uint64_t bitrate;
-
+        int64_t bitrate;
 
     protected:
 

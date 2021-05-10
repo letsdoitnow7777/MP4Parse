@@ -14,8 +14,7 @@ void BTRT::processData(MP4::IBinaryStream * stream, size_t length ) {
         printf("bad value of bitrate! length %d\n", (int)length);
         exit(1);
     }
-    bitrate = MP4::readUnsignedLong(stream);
-//    stream->ignore(length);
+    bitrate = MP4::readBigEndianUnsignedLong(stream);
 }
 
 std::string BTRT::description()
