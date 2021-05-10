@@ -38,45 +38,21 @@
 
 namespace MP4
 {
-    class UnknownAtomException : public std::exception
-    {
-        private:
-            
-            
-            
-        protected:
-            
-            unsigned int code;
-            
-        public:
-            
-            enum
-            {
-                NoAtomType = 0x00
-            };
-            
-            UnknownAtomException();
-            UnknownAtomException( unsigned int c );
-            virtual const char * what() const throw();
-    };
-    
     class UnknownAtom : public DataAtom
     {
-        private:
-            
-            
-            
-        protected:
-            
-            
-            
-        public:
-            
-            UnknownAtom() = delete;
-            explicit UnknownAtom(char *t, size_t size);
-            
-            std::string description();
-            void processData(MP4::IBinaryStream * stream, size_t length );
+    private:
+        std::string data;
+
+    protected:
+
+
+    public:
+
+        UnknownAtom() = delete;
+        explicit UnknownAtom(char *t);
+
+        std::string description();
+        void processData(MP4::IBinaryStream * stream, size_t length );
     };
 }
 

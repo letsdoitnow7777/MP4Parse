@@ -158,7 +158,7 @@ int Parser::Parse()
         else if( strcmp( type, "xml " ) == 0 ) {atom = ( MP4::Atom * )( new MP4::XML() ); }
         else
         {
-            atom = new MP4::UnknownAtom(type, dataLength);
+            atom = new MP4::UnknownAtom(type);
         }
 
         atom->addParent(parentAtom);

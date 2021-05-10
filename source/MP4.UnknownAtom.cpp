@@ -33,7 +33,7 @@
 
 using namespace MP4;
 
-UnknownAtom::UnknownAtom(char *t, size_t size)
+UnknownAtom::UnknownAtom(char *t)
 {
     this->_type = t;
 
