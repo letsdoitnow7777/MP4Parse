@@ -7,7 +7,7 @@ TITL::TITL()
 }
 
 void TITL::processData(MP4::IBinaryStream * stream, size_t length ) {
-    this->_dataLength = length;
+//    DataAtom::processData(stream, length);
     for (int i = 0; i < length; i++) {
         uint8_t symbol = MP4::readUnsignedChar(stream);
         if (symbol != 0) {

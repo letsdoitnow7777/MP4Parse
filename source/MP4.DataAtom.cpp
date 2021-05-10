@@ -43,7 +43,35 @@ std::string DataAtom::description()
     return o.str();
 }
 
+static std::string ToHex(const char* s, int len, bool upper_case)
+{
+    std::ostringstream ret;
+
+    for (std::string::size_type i = 0; i < len; ++i)
+    {
+        int z = s[i]&0xff;
+        ret << std::hex << std::setfill('0') << std::setw(2) << (upper_case ? std::uppercase : std::nouppercase) << z;
+    }
+
+    return ret.str();
+}
 void DataAtom::processData(MP4::IBinaryStream *stream, size_t length) {
-    this->_dataLength = length;
-    stream->ignore( length );
+    const int maxSizeWeWantToStore = 40;
+    this->_size = length;
+    char* buffer = new char[length];
+    stream->read(buffer, length );
+    int copyLength = std::min((int)length, maxSizeWeWantToStore);
+    std::string hexBuf = ToHex(buffer, copyLength, true);
+    printf("type %s process data: %d . data - %s\n", _type.c_str(), (int)length, hexBuf.c_str());
+
+    _data = hexBuf;
+    std::string strView;
+    for (int i = 0; i < length; i++) {
+        uint8_t symbol = buffer[i];
+        if (symbol != 0) {
+            strView += (char)symbol;
+        }
+    }
+    printf("                     string data - %s\n", strView.c_str());
+
 }

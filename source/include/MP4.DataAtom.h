@@ -47,7 +47,7 @@ namespace MP4
             
         protected:
             
-            char * _data;
+            std::string _data;
             size_t _dataLength;
             
         public:
