@@ -91,6 +91,7 @@
 
 #include "M4F.BTRT.h"
 #include "M4F.FPS.h"
+#include "M4F.TITL.h"
 
 
 #endif /* _ATOMS_H_ */

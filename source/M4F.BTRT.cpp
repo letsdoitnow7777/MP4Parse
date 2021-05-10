@@ -1,6 +1,4 @@
 #include "M4F.BTRT.h"
-#include "include/M4F.BTRT.h"
-
 
 using namespace MP4;
 BTRT::BTRT()
