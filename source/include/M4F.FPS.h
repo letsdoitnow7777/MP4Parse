@@ -1,6 +1,6 @@
 
-#ifndef _M4F_BTRT_H_
-#define _M4F_BTRT_H_
+#ifndef _M4F_FPS_H_
+#define _M4F_FPS_H_
 #pragma once
 
 #include "mp4.h"
@@ -9,20 +9,20 @@
 
 namespace MP4
 {
-    class BTRT : DataAtom
+    class FPS : DataAtom
     {
     private:
-        int64_t bitrate{}; // fps in kb/s
+        int64_t fps; // fps in kb/s
 
     protected:
 
 
     public:
-        BTRT();
+        FPS();
 
         void processData(MP4::IBinaryStream * stream, size_t length ) override;
         std::string description() override;
     };
 }
 
-#endif /* _M4F_BTRT_H_ */
+#endif /* _M4F_FPS_H_ */

@@ -89,4 +89,8 @@
 #include "MP4.VMHD.h"
 #include "MP4.XML.h"
 
+#include "M4F.BTRT.h"
+#include "M4F.FPS.h"
+
+
 #endif /* _ATOMS_H_ */

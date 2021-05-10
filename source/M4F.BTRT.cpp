@@ -6,6 +6,7 @@ using namespace MP4;
 BTRT::BTRT()
 {
     this->_type.append( "BTRT" );
+    this->bitrate = -1;
 }
 
 void BTRT::processData(MP4::IBinaryStream * stream, size_t length ) {
