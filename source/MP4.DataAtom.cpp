@@ -55,6 +55,7 @@ static std::string ToHex(const char* s, int len, bool upper_case)
 
     return ret.str();
 }
+
 void DataAtom::processData(MP4::IBinaryStream *stream, size_t length) {
     const int maxSizeWeWantToStore = 40;
     this->_size = length;
