@@ -40,26 +40,27 @@ namespace MP4
 {
     class Atom
     {
-        private:
+    private:
 
-        protected:
-            
-            Atom * _parent;
-            std::string _type;
-            
-        public:
-            
-            virtual ~Atom();
-            
-            std::string getType();
-            
-            virtual std::string description();
+    protected:
 
-            Atom* getParent();
-            Atom* addParent(Atom*);
-            std::string countIndent();
+        Atom * _parent;
+        std::string _type;
+        size_t _size;
 
-            virtual void processData(MP4::IBinaryStream * stream, size_t length ) = 0;
+    public:
+
+        virtual ~Atom();
+
+        std::string getType();
+
+        virtual std::string description();
+
+        Atom* getParent();
+        Atom* addParent(Atom*);
+        std::string countIndent();
+
+        virtual void processData(MP4::IBinaryStream * stream, size_t length ) = 0;
     };
 }
 

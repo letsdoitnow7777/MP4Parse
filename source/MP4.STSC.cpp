@@ -41,5 +41,5 @@ STSC::STSC()
 
 void STSC::processData(MP4::IBinaryStream * stream, size_t length )
 {
-    stream->ignore( length );
+    DataAtom::processData(stream, length);
 }

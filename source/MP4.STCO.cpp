@@ -41,5 +41,5 @@ STCO::STCO()
 
 void STCO::processData(MP4::IBinaryStream * stream, size_t length )
 {
-    stream->ignore( length );
+    DataAtom::processData(stream, length);
 }

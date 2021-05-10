@@ -35,6 +35,7 @@ using namespace MP4;
 
 void FullBox::processData(MP4::IBinaryStream * stream, size_t length )
 {
+    this->_dataLength = length;
     uint32_t data;
     
     (void)length;

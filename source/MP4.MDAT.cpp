@@ -43,3 +43,7 @@ void MDAT::processData(MP4::IBinaryStream * stream, size_t length )
 {
     stream->ignore( length );
 }
+
+std::string MDAT::description() {
+    return "MDAT(DataAtom) : len " + std::to_string(_dataLength) + "\n";
+}

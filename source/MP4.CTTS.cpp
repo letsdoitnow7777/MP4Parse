@@ -37,9 +37,3 @@ CTTS::CTTS()
 {
     this->_type.append( "CTTS" );
 }
-
-
-void CTTS::processData(MP4::IBinaryStream * stream, size_t length )
-{
-    stream->ignore( length );
-}

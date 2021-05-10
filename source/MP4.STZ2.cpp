@@ -41,5 +41,5 @@ STZ2::STZ2()
 
 void STZ2::processData(MP4::IBinaryStream * stream, size_t length )
 {
-    stream->ignore( length );
+    DataAtom::processData(stream, length);
 }

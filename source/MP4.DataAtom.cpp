@@ -38,7 +38,12 @@ std::string DataAtom::description()
     std::ostringstream o;
     std::string indent = countIndent();
 
-    o << indent << this->_type << "(DataAtom)" << "\n";
+    o << indent << this->_type << "(DataAtom)" << "[" << _dataLength << "bytes]" << "\n";
 
     return o.str();
+}
+
+void DataAtom::processData(MP4::IBinaryStream *stream, size_t length) {
+    this->_dataLength = length;
+    stream->ignore( length );
 }

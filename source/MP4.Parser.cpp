@@ -65,7 +65,7 @@ int Parser::Parse()
         length     = MP4::readBigEndianUnsignedInteger(this->_stream);
         dataLength = 0;
 
-        printf("read type\n");
+//        printf("read type\n");
         this->_stream->read( ( char * )type, 4 );
 
         if( length == 1 ) {dataLength = MP4::readBigEndianUnsignedInteger(this->_stream) - 16; }
@@ -92,7 +92,7 @@ int Parser::Parse()
                 || strcmp( type, "trak" ) == 0
                 )
         {
-            containerAtom = new MP4::ContainerAtom( type );
+            containerAtom = new MP4::ContainerAtom(type);
 
             containerAtom->addParent(parentAtom);
             parentAtom->addChild( containerAtom );
@@ -156,7 +156,7 @@ int Parser::Parse()
         else if( strcmp( type, "xml " ) == 0 ) {atom = ( MP4::Atom * )( new MP4::XML() ); }
         else
         {
-            atom = new MP4::UnknownAtom(type);
+            atom = new MP4::UnknownAtom(type, dataLength);
         }
 
         atom->addParent(parentAtom);

@@ -41,5 +41,5 @@ CO64::CO64()
 
 void CO64::processData(MP4::IBinaryStream * stream, size_t length )
 {
-    stream->ignore( length );
+    DataAtom::processData(stream, length);
 }

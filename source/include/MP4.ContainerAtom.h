@@ -45,7 +45,7 @@ namespace MP4
         std::multimap< std::string, Atom * > _children;
 
     public:
-        explicit ContainerAtom( char * type );
+        explicit ContainerAtom(char *type);
         ~ContainerAtom() override;
 
         void addChild( Atom * a );

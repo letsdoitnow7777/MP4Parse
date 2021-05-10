@@ -587,14 +587,14 @@ namespace MP4{
 
     bool BinaryStreamBounded::eof() const
     {
-        printf("available %d\n", availableBytes);
+//        printf("available %d\n", availableBytes);
         return availableBytes == 0 || underlyingStream->eof();
     }
 
     std::istream & BinaryStreamBounded::get(char * s, std::streamsize n )
     {
         int bytesToReturn = std::min(n, long(availableBytes));
-        printf("get %10d, available %10d, returned %10d\n", (int)n, availableBytes, bytesToReturn);
+//        printf("get %10d, available %10d, returned %10d\n", (int)n, availableBytes, bytesToReturn);
         availableBytes -= bytesToReturn;
 
         return underlyingStream->get(s, bytesToReturn);
@@ -603,7 +603,7 @@ namespace MP4{
     std::istream & BinaryStreamBounded::ignore(std::streamsize n, int delim )
     {
         int bytesToReturn = std::min(n, long(availableBytes));
-        printf("ignored %10d, available %10d, returned %10d\n", (int)n, availableBytes, bytesToReturn);
+//        printf("ignored %10d, available %10d, returned %10d\n", (int)n, availableBytes, bytesToReturn);
         availableBytes -= bytesToReturn;
 
         return underlyingStream->ignore( bytesToReturn, delim );
@@ -612,7 +612,7 @@ namespace MP4{
     std::istream & BinaryStreamBounded::read(char * s, std::streamsize n )
     {
         int bytesToReturn = std::min(n, long(availableBytes));
-        printf("read %10d, available %10d, returned %10d\n", (int)n, availableBytes, bytesToReturn);
+//        printf("read %10d, available %10d, returned %10d\n", (int)n, availableBytes, bytesToReturn);
         availableBytes -= bytesToReturn;
 
         return underlyingStream->read( s, bytesToReturn );

@@ -54,7 +54,7 @@ namespace MP4
             
             bool final;
             
-            virtual void processData(MP4::IBinaryStream * stream, size_t length ) = 0;
+            virtual void processData(MP4::IBinaryStream * stream, size_t length );
             virtual std::string description();
     };
 }

@@ -41,5 +41,5 @@ STTS::STTS()
 
 void STTS::processData(MP4::IBinaryStream * stream, size_t length )
 {
-    stream->ignore( length );
+    DataAtom::processData(stream, length);
 }

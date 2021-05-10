@@ -33,10 +33,10 @@
 
 using namespace MP4;
 
-UnknownAtom::UnknownAtom( char * t )
+UnknownAtom::UnknownAtom(char *t, size_t size)
 {
     this->_type = t;
-    
+
     std::transform( this->_type.begin(), this->_type.end(), this->_type.begin(), ::toupper );
 }
 
@@ -45,12 +45,13 @@ std::string UnknownAtom::description()
     std::ostringstream o;
     std::string indent = countIndent();
 
-    o << indent << this->_type << "(Unknown)" << "\n";
+    o << indent << this->_type << "(Unknown)" << " [" << _size << "bytes]\n";
 
     return o.str();
 }
 
 void UnknownAtom::processData(MP4::IBinaryStream * stream, size_t length )
 {
+    this->_size = length;
     stream->ignore( length );
 }

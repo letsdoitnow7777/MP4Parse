@@ -50,7 +50,9 @@ namespace MP4
             
             MDAT();
             
-            void processData(MP4::IBinaryStream * stream, size_t length );
+            void processData(MP4::IBinaryStream * stream, size_t length ) override;
+
+            std::string description() override;
     };
 }
 

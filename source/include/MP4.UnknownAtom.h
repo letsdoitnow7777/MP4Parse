@@ -73,7 +73,7 @@ namespace MP4
         public:
             
             UnknownAtom() = delete;
-            explicit UnknownAtom( char * t );
+            explicit UnknownAtom(char *t, size_t size);
             
             std::string description();
             void processData(MP4::IBinaryStream * stream, size_t length );

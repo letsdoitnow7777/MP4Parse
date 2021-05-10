@@ -44,7 +44,7 @@ namespace MP4
         protected:
         public:
             
-            File() : ContainerAtom( ( char * )"" )
+            File() : ContainerAtom((char *) "")
             {}
             
             std::string description();

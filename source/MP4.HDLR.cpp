@@ -41,5 +41,6 @@ HDLR::HDLR()
 
 void HDLR::processData(MP4::IBinaryStream * stream, size_t length )
 {
+    this->_dataLength = length;
     stream->ignore( length );
 }
