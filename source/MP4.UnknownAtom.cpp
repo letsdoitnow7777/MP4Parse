@@ -36,6 +36,7 @@ using namespace MP4;
 UnknownAtom::UnknownAtom(char *t)
 {
     this->_type = t;
+    this->data = new char[100];
 
     std::transform( this->_type.begin(), this->_type.end(), this->_type.begin(), ::toupper );
 }
@@ -45,13 +46,35 @@ std::string UnknownAtom::description()
     std::ostringstream o;
     std::string indent = countIndent();
 
+    std::stringstream ss;
+
     o << indent << this->_type << "(Unknown)" << " [" << _size << "bytes]\n";
+    o << indent << "   data as hex: " <<  data << "\n";
 
     return o.str();
 }
 
+static std::string ToHex(const char* s, int len, bool upper_case)
+{
+    std::ostringstream ret;
+
+    for (std::string::size_type i = 0; i < len; ++i)
+    {
+        int z = s[i]&0xff;
+        ret << std::hex << std::setfill('0') << std::setw(2) << (upper_case ? std::uppercase : std::nouppercase) << z;
+    }
+
+    return ret.str();
+}
 void UnknownAtom::processData(MP4::IBinaryStream * stream, size_t length )
 {
+    const int maxSizeWeWantToStore = 100;
     this->_size = length;
-    stream->ignore( length );
+    char* buffer = new char[length];
+    stream->read(buffer, length );
+    int copyLength = std::min((int)length, maxSizeWeWantToStore);
+    std::string hexBuf = ToHex(buffer, (int)length, true);
+    printf("process data: %d . data - %s\n", (int)length, hexBuf.c_str());
+
+    data = hexBuf;
 }
