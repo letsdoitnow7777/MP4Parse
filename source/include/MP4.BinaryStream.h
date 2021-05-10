@@ -42,19 +42,6 @@ namespace MP4
     class IBinaryStream {
     public:
         virtual ~IBinaryStream()= default;
-        virtual uint16_t readBigEndianUnsignedShort() = 0;
-        virtual uint16_t readLittleEndianUnsignedShort() = 0;
-
-        virtual uint32_t readBigEndianUnsignedInteger() = 0;
-        virtual uint32_t readLittleEndianUnsignedInteger() = 0;
-
-        virtual uint64_t readBigEndianUnsignedLong(IBinaryStream *s) = 0;
-
-        virtual float readBigEndianFixedPoint( unsigned int integerLength, unsigned int fractionalLength ) = 0;
-
-        virtual std::string * readBigEndianISO639Code() = 0;
-
-        virtual void readMatrix( matrix * m ) = 0;
 
         virtual bool eof() const = 0;
         virtual std::istream & get( char * s, std::streamsize n ) = 0;
@@ -72,37 +59,6 @@ namespace MP4
     public:
         explicit BinaryStream(char * filename );
         virtual ~BinaryStream();
-
-        uint8_t readUnsignedChar();
-        int8_t readSignedChar();
-
-        uint16_t readUnsignedShort();
-        int16_t readSignedShort();
-        uint16_t readBigEndianUnsignedShort() override;
-        uint16_t readLittleEndianUnsignedShort() override;
-
-        uint32_t readUnsignedInteger();
-        int32_t readSignedInteger();
-        uint32_t readBigEndianUnsignedInteger() override;
-        uint32_t readLittleEndianUnsignedInteger() override;
-
-        uint64_t readUnsignedLong(IBinaryStream *s);
-        int64_t readSignedLong();
-        uint64_t readBigEndianUnsignedLong(IBinaryStream *s) override;
-        uint64_t readLittleEndianUnsignedLong();
-
-        float readFloat();
-        double readDouble();
-
-        float readBigEndianFixedPoint( unsigned int integerLength, unsigned int fractionalLength ) override;
-        float readLittleEndianFixedPoint( unsigned int integerLength, unsigned int fractionalLength );
-
-        std::string * readBigEndianISO639Code() override;
-        std::string * readNULLTerminatedString();
-        std::string * readUTF8String();
-        std::string * readLongUTF8String();
-
-        void readMatrix( matrix * m ) override;
 
         bool good() const;
         bool eof() const override;
@@ -137,19 +93,6 @@ namespace MP4
         int availableBytes;
     public:
         BinaryStreamBounded(IBinaryStream *binaryStream, int len);
-        uint16_t readBigEndianUnsignedShort() override;
-        uint16_t readLittleEndianUnsignedShort() override;
-
-        uint32_t readBigEndianUnsignedInteger() override;
-        uint32_t readLittleEndianUnsignedInteger() override;
-
-        uint64_t readBigEndianUnsignedLong(IBinaryStream *s) override;
-
-        float readBigEndianFixedPoint( unsigned int integerLength, unsigned int fractionalLength ) override;
-
-        std::string * readBigEndianISO639Code() override;
-
-        void readMatrix( matrix * m ) override;
 
         bool eof() const override;
         std::istream & get( char * s, std::streamsize n ) override;
@@ -157,7 +100,36 @@ namespace MP4
         std::istream & read( char * s, std::streamsize n ) override;
     };
 
+//    uint8_t readUnsignedChar(IBinaryStream* s);
+//    int8_t readSignedChar(IBinaryStream* s);
+//
+//    uint16_t readUnsignedShort(IBinaryStream* s);
+//    int16_t readSignedShort(IBinaryStream* s);
+//    uint16_t readBigEndianUnsignedShort(IBinaryStream* s);
+//    uint16_t readLittleEndianUnsignedShort(IBinaryStream* s);
+//
+//    uint32_t readUnsignedInteger(IBinaryStream* s);
+//    int32_t readSignedInteger(IBinaryStream* s);
+    uint32_t readBigEndianUnsignedInteger(IBinaryStream* s);
+//    uint32_t readLittleEndianUnsignedInteger(IBinaryStream* s);
+//
+//    uint64_t readUnsignedLong(IBinaryStream *s);
+//    int64_t readSignedLong(IBinaryStream* s);
+    uint64_t readBigEndianUnsignedLong(IBinaryStream *s);
+//    uint64_t readLittleEndianUnsignedLong(IBinaryStream* s);
+//
+//    float readFloat(IBinaryStream* s);
+//    double readDouble(IBinaryStream* s);
+//
+    float readBigEndianFixedPoint(IBinaryStream* s, unsigned int integerLength, unsigned int fractionalLength );
+//    float readLittleEndianFixedPoint(IBinaryStream* s, unsigned int integerLength, unsigned int fractionalLength );
+//
+    std::string * readBigEndianISO639Code(IBinaryStream* s);
+//    std::string * readNULLTerminatedString(IBinaryStream* s);
+//    std::string * readUTF8String(IBinaryStream* s);
+//    std::string * readLongUTF8String(IBinaryStream* s);
 
+    void readMatrix(IBinaryStream* s, matrix * m );
 }
 
 #endif /* MP4_BINARY_STREAM_ */

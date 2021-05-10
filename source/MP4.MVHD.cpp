@@ -44,32 +44,32 @@ void MVHD::processData(MP4::IBinaryStream * stream, size_t length )
     
     if( this->_version == 1 )
     {
-        this->_creationTime     = stream->readBigEndianUnsignedLong(stream);
-        this->_modificationTime = stream->readBigEndianUnsignedLong(stream);
-        this->_timeScale        = stream->readBigEndianUnsignedInteger();
-        this->_duration         = stream->readBigEndianUnsignedLong(stream);
-        this->_rate             = stream->readBigEndianFixedPoint( 16, 16 );
-        this->_volume           = stream->readBigEndianFixedPoint( 8, 8 );
+        this->_creationTime     = MP4::readBigEndianUnsignedLong(stream);
+        this->_modificationTime = MP4::readBigEndianUnsignedLong(stream);
+        this->_timeScale        = MP4::readBigEndianUnsignedInteger(stream);
+        this->_duration         = MP4::readBigEndianUnsignedLong(stream);
+        this->_rate             = MP4::readBigEndianFixedPoint(stream, 16, 16 );
+        this->_volume           = MP4::readBigEndianFixedPoint(stream, 8, 8 );
         
         stream->ignore( 10 );
-        stream->readMatrix( &( this->_matrix ) );
+        MP4::readMatrix(stream, &( this->_matrix ) );
         stream->ignore( 24 );
         
-        this->_nextTrackId = stream->readBigEndianUnsignedInteger();
+        this->_nextTrackId = MP4::readBigEndianUnsignedInteger(stream);
     }
     else
     {
-        this->_creationTime     = stream->readBigEndianUnsignedInteger();
-        this->_modificationTime = stream->readBigEndianUnsignedInteger();
-        this->_timeScale        = stream->readBigEndianUnsignedInteger();
-        this->_duration         = stream->readBigEndianUnsignedInteger();
-        this->_rate             = stream->readBigEndianFixedPoint( 16, 16 );
-        this->_volume           = stream->readBigEndianFixedPoint( 8, 8 );
+        this->_creationTime     = MP4::readBigEndianUnsignedInteger(stream);
+        this->_modificationTime = MP4::readBigEndianUnsignedInteger(stream);
+        this->_timeScale        = MP4::readBigEndianUnsignedInteger(stream);
+        this->_duration         = MP4::readBigEndianUnsignedInteger(stream);
+        this->_rate             = MP4::readBigEndianFixedPoint(stream, 16, 16 );
+        this->_volume           = MP4::readBigEndianFixedPoint(stream, 8, 8 );
         
         stream->ignore( 10 );
-        stream->readMatrix( &( this->_matrix ) );
+        MP4::readMatrix(stream, &( this->_matrix ) );
         stream->ignore( 24 );
         
-        this->_nextTrackId = stream->readBigEndianUnsignedInteger();
+        this->_nextTrackId = MP4::readBigEndianUnsignedInteger(stream);
     }
 }

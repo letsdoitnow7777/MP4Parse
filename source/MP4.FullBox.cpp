@@ -39,7 +39,7 @@ void FullBox::processData(MP4::IBinaryStream * stream, size_t length )
     
     (void)length;
     
-    data = stream->readBigEndianUnsignedInteger();
+    data = readBigEndianUnsignedInteger(stream);
     
     this->_version = data >> 24;
     this->_flags   = data & 0x00FFFFFF;

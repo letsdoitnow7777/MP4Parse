@@ -62,19 +62,19 @@ void MDHD::processData(MP4::IBinaryStream * stream, size_t length )
     if( this->_version == 1 )
     {
         parsedLength            = 30;
-        this->_creationTime     = stream->readBigEndianUnsignedLong(stream);
-        this->_modificationTime = stream->readBigEndianUnsignedLong(stream);
+        this->_creationTime     = readBigEndianUnsignedLong(stream);
+        this->_modificationTime = readBigEndianUnsignedLong(stream);
     }
     else
     {
         parsedLength            = 22;
-        this->_creationTime     = stream->readBigEndianUnsignedInteger();
-        this->_modificationTime = stream->readBigEndianUnsignedInteger();
+        this->_creationTime     = readBigEndianUnsignedInteger(stream);
+        this->_modificationTime = readBigEndianUnsignedInteger(stream);
     }
     
-    this->_timeScale = stream->readBigEndianUnsignedInteger();
-    this->_duration  = stream->readBigEndianUnsignedInteger();
-    this->_language  = stream->readBigEndianISO639Code();
+    this->_timeScale = readBigEndianUnsignedInteger(stream);
+    this->_duration  = readBigEndianUnsignedInteger(stream);
+    this->_language  = readBigEndianISO639Code(stream);
     
     stream->ignore( length - parsedLength );
 }

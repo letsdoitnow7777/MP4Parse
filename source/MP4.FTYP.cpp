@@ -82,7 +82,7 @@ void FTYP::processData(MP4::IBinaryStream * stream, size_t length )
     stream->read( brand, 4 );
     _majorBrand.append( brand );
     
-    _minorVersion = stream->readBigEndianUnsignedInteger();
+    _minorVersion = MP4::readBigEndianUnsignedInteger(stream);
     
     if( length > 8 )
     {

@@ -62,13 +62,13 @@ int Parser::Parse()
 
     while (!this->_stream->eof())
     {
-        length     = this->_stream->readBigEndianUnsignedInteger();
+        length     = MP4::readBigEndianUnsignedInteger(this->_stream);
         dataLength = 0;
 
         printf("read type\n");
         this->_stream->read( ( char * )type, 4 );
 
-        if( length == 1 ) {dataLength = this->_stream->readBigEndianUnsignedInteger() - 16; }
+        if( length == 1 ) {dataLength = MP4::readBigEndianUnsignedInteger(this->_stream) - 16; }
         else
         {
             dataLength = length - 8;
