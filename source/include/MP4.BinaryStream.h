@@ -100,8 +100,8 @@ namespace MP4
         std::istream & read( char * s, std::streamsize n ) override;
     };
 
-//    uint8_t readUnsignedChar(IBinaryStream* s);
-//    int8_t readSignedChar(IBinaryStream* s);
+    uint8_t readUnsignedChar(IBinaryStream* s);
+    int8_t readSignedChar(IBinaryStream* s);
 //
 //    uint16_t readUnsignedShort(IBinaryStream* s);
 //    int16_t readSignedShort(IBinaryStream* s);
@@ -113,8 +113,8 @@ namespace MP4
     uint32_t readBigEndianUnsignedInteger(IBinaryStream* s);
 //    uint32_t readLittleEndianUnsignedInteger(IBinaryStream* s);
 //
-//    uint64_t readUnsignedLong(IBinaryStream *s);
-//    int64_t readSignedLong(IBinaryStream* s);
+    uint64_t readUnsignedLong(IBinaryStream *s);
+    int64_t readSignedLong(IBinaryStream* s);
     uint64_t readBigEndianUnsignedLong(IBinaryStream *s);
 //    uint64_t readLittleEndianUnsignedLong(IBinaryStream* s);
 //

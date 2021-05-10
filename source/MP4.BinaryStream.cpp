@@ -164,7 +164,7 @@ namespace MP4{
     }
 
 
-    static uint64_t readUnsignedLong(IBinaryStream *s)
+    uint64_t readUnsignedLong(IBinaryStream *s)
     {
         uint64_t n;
 
@@ -173,7 +173,7 @@ namespace MP4{
         return n;
     }
 
-    static int64_t readSignedLong(IBinaryStream *s)
+    int64_t readSignedLong(IBinaryStream *s)
     {
         int64_t n;
 
@@ -201,7 +201,7 @@ namespace MP4{
         return n;
     }
 
-    static uint64_t readLittleEndianUnsignedLong(IBinaryStream *s)
+    uint64_t readLittleEndianUnsignedLong(IBinaryStream *s)
     {
         uint8_t  c[ 8 ];
         uint64_t n;
@@ -220,7 +220,7 @@ namespace MP4{
         return n;
     }
 
-    static float readFloat(IBinaryStream *s  )
+    float readFloat(IBinaryStream *s  )
     {
         uint8_t  exp;
         uint32_t mantissa;
@@ -269,7 +269,7 @@ namespace MP4{
         return ( sign == 0 ) ? flt : -flt;
     }
 
-    static double readDouble(IBinaryStream *s )
+    double readDouble(IBinaryStream *s )
     {
         uint16_t  exp;
         uint64_t mantissa;
@@ -337,7 +337,7 @@ namespace MP4{
         return integer + fractional;
     }
 
-    static float readLittleEndianFixedPoint(IBinaryStream *s, unsigned int integerLength, unsigned int fractionalLength)
+    float readLittleEndianFixedPoint(IBinaryStream *s, unsigned int integerLength, unsigned int fractionalLength)
     {
         uint32_t n;
         unsigned int integer;
@@ -386,7 +386,7 @@ namespace MP4{
         return str;
     }
 
-    static std::string * readNULLTerminatedString(IBinaryStream *s)
+    std::string * readNULLTerminatedString(IBinaryStream *s)
     {
         unsigned char c;
         std::string * str;
@@ -405,7 +405,7 @@ namespace MP4{
         return str;
     }
 
-    static std::string *readUTF8String(IBinaryStream *st)
+    std::string *readUTF8String(IBinaryStream *st)
     {
         unsigned char c;
         uint16_t      length;
@@ -424,7 +424,7 @@ namespace MP4{
         return nullptr;
     }
 
-    static std::string *readLongUTF8String(IBinaryStream *st)
+    std::string *readLongUTF8String(IBinaryStream *st)
     {
         unsigned char c;
         uint32_t      length;

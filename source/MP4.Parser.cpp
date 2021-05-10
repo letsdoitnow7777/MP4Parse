@@ -29,6 +29,7 @@
  
 /* $Id$ */
 
+#include <M4F.BTRT.h>
 #include "MP4.Parser.h"
 #include "atoms.h"
 
@@ -107,6 +108,7 @@ int Parser::Parse()
         /* Data atoms */
         if     ( strcmp( type, "bxml" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::BXML() ); }
         else if( strcmp( type, "co64" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::CO64() ); }
+        else if( strcmp( type, "btrt" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::BTRT() ); }
         else if( strcmp( type, "cprt" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::CPRT() ); }
         else if( strcmp( type, "ctts" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::CTTS() ); }
         else if( strcmp( type, "dref" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::DREF() ); }

@@ -4,7 +4,9 @@ set(CMAKE_CXX_STANDARD 11)
 set(TARGET mp4parser)
 project(${TARGET})
 
-add_executable(${TARGET} source/MP4.Atom.cpp
+add_executable(${TARGET}
+        source/M4F.BTRT.cpp
+        source/MP4.Atom.cpp
         source/MP4.BXML.cpp
         source/MP4.BinaryStream.cpp
         source/MP4.CO64.cpp
