@@ -67,7 +67,7 @@ void DataAtom::processData(MP4::IBinaryStream *stream, size_t length) {
 
     _data = hexBuf;
     std::string strView;
-    for (int i = 0; i < length; i++) {
+    for (int i = 0; i < copyLength; i++) {
         uint8_t symbol = buffer[i];
         if (symbol != 0) {
             strView += (char)symbol;
