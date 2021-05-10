@@ -9,7 +9,7 @@
 
 namespace MP4
 {
-    class TITL : DataAtom
+    class Title : DataAtom
     {
     private:
         std::string titl;
@@ -18,7 +18,7 @@ namespace MP4
 
 
     public:
-        TITL();
+        Title();
 
         void processData(MP4::IBinaryStream * stream, size_t length ) override;
         std::string description() override;

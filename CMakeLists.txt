@@ -7,7 +7,7 @@ project(${TARGET})
 add_executable(${TARGET}
         source/M4F.BTRT.cpp
         source/M4F.FPS.cpp
-        source/M4F.TITL.cpp
+        source/M4F.Title.cpp
         source/MP4.Atom.cpp
         source/MP4.BXML.cpp
         source/MP4.BinaryStream.cpp

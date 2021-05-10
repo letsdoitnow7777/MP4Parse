@@ -1,12 +1,12 @@
-#include "M4F.TITL.h"
+#include "M4F.Title.h"
 
 using namespace MP4;
-TITL::TITL()
+Title::Title()
 {
     this->_type.append( "TITL" );
 }
 
-void TITL::processData(MP4::IBinaryStream * stream, size_t length ) {
+void Title::processData(MP4::IBinaryStream * stream, size_t length ) {
 //    DataAtom::processData(stream, length);
     for (int i = 0; i < length; i++) {
         uint8_t symbol = MP4::readUnsignedChar(stream);
@@ -16,7 +16,7 @@ void TITL::processData(MP4::IBinaryStream * stream, size_t length ) {
     }
 }
 
-std::string TITL::description()
+std::string Title::description()
 {
     std::ostringstream o;
     std::string indent = countIndent();

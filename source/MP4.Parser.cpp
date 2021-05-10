@@ -131,7 +131,7 @@ int Parser::Parse()
         else if( strcmp( type, "padb" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::PADB() ); }
         else if( strcmp( type, "pdin" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::PDIN() ); }
         else if( strcmp( type, "pitm" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::PITM() ); }
-        else if( strcmp( type, "titl" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::TITL() ); }
+        else if( strcmp( type, "titl" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::Title() ); }
         else if( strcmp( type, "sbgp" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::SBGP() ); }
         else if( strcmp( type, "schi" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::SCHI() ); }
         else if( strcmp( type, "schm" ) == 0 ) {atom = ( MP4::Atom * )( new MP4::SCHM() ); }
