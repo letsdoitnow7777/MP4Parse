@@ -40,17 +40,26 @@ namespace MP4
 {
     class STTS : DataAtom
     {
-        private:
-            
-            
-        protected:
-            
-            
-        public:
-            
-            STTS();
-            
-            void processData(MP4::IBinaryStream * stream, size_t length );
+    private:
+
+        uint8_t version;
+        uint8_t flags[3];
+
+        uint32_t numberOfEntries;
+        uint32_t sampleDuration;
+        uint32_t sampleCount;
+        uint32_t *tableEntries;
+
+    protected:
+
+
+    public:
+
+        STTS();
+
+        void processData(MP4::IBinaryStream * stream, size_t length ) override;
+
+        std::string description() override;
     };
 }
 

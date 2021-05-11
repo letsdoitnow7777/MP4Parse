@@ -41,5 +41,46 @@ STTS::STTS()
 
 void STTS::processData(MP4::IBinaryStream * stream, size_t length )
 {
-    DataAtom::processData(stream, length);
+    this->_size = length;
+    this->_dataLength = length;
+
+    version = readUnsignedChar(stream);                     // 8  1
+    flags[0] = readUnsignedChar(stream);                    // 8  1
+    flags[1] = readUnsignedChar(stream);                    // 8  1
+    flags[2] = readUnsignedChar(stream);                    // 8  1
+    // fixme maybe order upper is wrong and we wanted 0->1->2
+
+    numberOfEntries = readBigEndianUnsignedInteger(stream);  // 32 4
+    sampleDuration = readBigEndianUnsignedInteger(stream);   // 32 4
+    sampleCount = readBigEndianUnsignedInteger(stream);      // 32 4
+    tableEntries = new uint32_t [numberOfEntries];
+
+    for (int i = 0; i < numberOfEntries; i++) {
+        tableEntries[i] = readBigEndianUnsignedInteger(stream);
+    }
+
 }
+
+
+std::string STTS::description() {
+    std::string desc =  DataAtom::description();
+
+    std::stringstream ss;
+    ss << desc;
+    ss << "version: " << version << "\t";
+    ss << "flags: " << flags[0] << " " << flags[1] << " " << flags[2] << "\t";
+    ss << "numberOfEntries: " << numberOfEntries << "\t";
+    ss << "sampleDuration: " << sampleDuration << "\t";
+    ss << "sampleCount: " << sampleCount << "\n";
+
+    ss << "I CAN COUNT DURATION: sampleDuration x sampleCount = " << sampleDuration << " x " << sampleCount << " = " << \
+        sampleCount * sampleDuration << "\n";
+    ss << "entries: \n";
+    for (int i = 0; i < std::min((int)numberOfEntries, 100); i++) {
+        ss << i << ": " << tableEntries[i] << "\n";
+    }
+
+    ss << "\n";
+    return ss.str();
+}
+
