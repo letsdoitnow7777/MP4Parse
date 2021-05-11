@@ -38,7 +38,7 @@ std::string DataAtom::description()
     std::ostringstream o;
     std::string indent = countIndent();
 
-    o << indent << this->_type << "(DataAtom)" << "[" << _dataLength << "bytes]" << "\n";
+    o << indent << this->_type << "(DataAtom)" << "[" << _size << "bytes]"  << "str: " << _data << "\n";
 
     return o.str();
 }
@@ -59,6 +59,7 @@ static std::string ToHex(const char* s, int len, bool upper_case)
 void DataAtom::processData(MP4::IBinaryStream *stream, size_t length) {
     const int maxSizeWeWantToStore = 40;
     this->_size = length;
+    this->_dataLength = length;
     char* buffer = new char[length];
     stream->read(buffer, length );
     int copyLength = std::min((int)length, maxSizeWeWantToStore);

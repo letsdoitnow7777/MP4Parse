@@ -41,5 +41,37 @@ STCO::STCO()
 
 void STCO::processData(MP4::IBinaryStream * stream, size_t length )
 {
-    DataAtom::processData(stream, length);
+    this->_size = length;
+    this->_dataLength = length;
+
+    version = readUnsignedChar(stream);
+    flags[0] = readUnsignedChar(stream);
+    flags[1] = readUnsignedChar(stream);
+    flags[2] = readUnsignedChar(stream);
+    // fixme maybe order upper is wrong and we wanted 0->1->2
+
+    numberOfEntries = readBigEndianUnsignedInteger(stream);
+    chunkOffsets = new uint32_t [numberOfEntries];
+
+    for (int i = 0; i < numberOfEntries; i++) {
+        chunkOffsets[i] = readBigEndianUnsignedInteger(stream);
+    }
+
+}
+
+std::string STCO::description() {
+    std::string desc =  DataAtom::description();
+
+    std::stringstream ss;
+    ss << desc;
+    ss << "version: " << version << "\t";
+    ss << "flags: " << flags[0] << " " << flags[1] << " " << flags[2] << "\t";
+    ss << "numberOfEntries: " << numberOfEntries << "\t";
+
+    ss << "chunk offsets: ";
+    for (int i = 0; i < std::min((int)numberOfEntries, 10); i++) {
+        ss << i << ": " << chunkOffsets[i] << " ";
+    }
+    ss << "\n";
+    return ss.str();
 }

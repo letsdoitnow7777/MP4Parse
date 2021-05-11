@@ -12,7 +12,7 @@ namespace MP4
     class SegmentData : DataAtom
     {
     private:
-        int segmentData[3];
+        u_int64_t segmentData[3];
 
     protected:
 

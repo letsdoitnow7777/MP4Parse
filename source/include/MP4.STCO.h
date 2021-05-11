@@ -38,11 +38,17 @@
 
 namespace MP4
 {
+    // Table Chunk Offsets
     class STCO : DataAtom
     {
         private:
-            
-            
+
+        uint8_t version;
+        uint8_t flags[3];
+
+        uint32_t numberOfEntries;
+        uint32_t *chunkOffsets;
+
         protected:
             
             
@@ -50,7 +56,9 @@ namespace MP4
             
             STCO();
             
-            void processData(MP4::IBinaryStream * stream, size_t length );
+            void processData(MP4::IBinaryStream * stream, size_t length ) override;
+
+            std::string description() override;
     };
 }
 
