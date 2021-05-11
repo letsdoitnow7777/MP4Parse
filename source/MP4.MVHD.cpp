@@ -73,3 +73,14 @@ void MVHD::processData(MP4::IBinaryStream * stream, size_t length )
         this->_nextTrackId = MP4::readBigEndianUnsignedInteger(stream);
     }
 }
+
+std::string MVHD::description() {
+    std::stringstream ss;
+    ss << "_creationTime    : " << this->_creationTime     << "\t";
+    ss << "_modificationTime: " << this->_modificationTime << "\t";
+    ss << "_timeScale       : " << this->_timeScale        << "\t";
+    ss << "_duration        : " << this->_duration         << "\t";
+    ss << "_rate            : " << this->_rate             << "\t";
+    ss << "_volume          : " << this->_volume           << "\n";
+    return DataAtom::description();
+}

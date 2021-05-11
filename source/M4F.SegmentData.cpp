@@ -15,7 +15,7 @@ void SegmentData::processData(MP4::IBinaryStream * stream, size_t length ) {
     segmentData[0] = MP4::readBigEndianUnsignedLong(stream);
     segmentData[1] = MP4::readBigEndianUnsignedLong(stream);
     segmentData[2] = MP4::readBigEndianUnsignedLong(stream);
-    std::cout << "parsing TYPE tag. " << "int1: " << segmentData[0] << "    int2: " << segmentData[1] << " int3: " << segmentData[2] << "\n";
+//    std::cout << "parsing TYPE tag. " << "int1: " << segmentData[0] << "    int2: " << segmentData[1] << " int3: " << segmentData[2] << "\n";
 }
 
 std::string SegmentData::description()
