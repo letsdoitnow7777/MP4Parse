@@ -32,7 +32,8 @@
 #include "MP4.HDLR.h"
 
 using namespace MP4;
-          
+
+// HanDLeR
 HDLR::HDLR()
 {
     this->_type.append( "HDLR" );
@@ -41,6 +42,41 @@ HDLR::HDLR()
 
 void HDLR::processData(MP4::IBinaryStream * stream, size_t length )
 {
+    this->_size = length;
     this->_dataLength = length;
-    stream->ignore( length );
+
+    version = readUnsignedChar(stream);
+    flags[0] = readUnsignedChar(stream);
+    flags[1] = readUnsignedChar(stream);
+    flags[2] = readUnsignedChar(stream);
+    // fixme maybe order upper is wrong and we wanted 0->1->2
+
+//    char                 componentType[ 5 ];
+    memset(componentType, 0, 5 );
+    stream->read(( char * )componentType, 4 );          // 4 bytes
+
+//    char                 componentSubType[ 5 ];
+    memset(componentSubType, 0, 5 );
+    stream->read(( char * )componentSubType, 4 );       // 4 bytes
+
+    int nameLength = length -  4 - 4;
+    char *name = new char[nameLength + 1];
+    memset(name, 0, length - 4 - 4);
+    stream->read((char*) name, nameLength);
+    componentName = name;
+}
+
+std::string HDLR::description() {
+
+
+        std::ostringstream o;
+        std::string indent = countIndent();
+
+        o << indent << this->_type << "(DataAtom)" << "[" << _dataLength << "bytes]" << \
+            " componentType = " << componentType << ";" << \
+            " componentSubType = " << componentSubType << ";" << \
+            " name = " << componentName << "\n";
+
+        return o.str();
+
 }

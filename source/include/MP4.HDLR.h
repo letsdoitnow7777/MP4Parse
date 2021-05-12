@@ -40,17 +40,24 @@ namespace MP4
 {
     class HDLR : DataAtom
     {
-        private:
-            
-            
-        protected:
-            
-            
-        public:
-            
-            HDLR();
-            
-            void processData(MP4::IBinaryStream * stream, size_t length );
+    private:
+
+        uint8_t version;
+        uint8_t flags[3];
+        char componentType[5], componentSubType[5];
+        std::string componentName;
+
+
+
+    protected:
+
+
+    public:
+
+        HDLR();
+
+        void processData(MP4::IBinaryStream * stream, size_t length );
+        std::string description() override;
     };
 }
 

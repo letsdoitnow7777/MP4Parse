@@ -63,24 +63,27 @@ void STTS::processData(MP4::IBinaryStream * stream, size_t length )
 
 
 std::string STTS::description() {
-    std::string desc =  DataAtom::description();
-
     std::stringstream ss;
-    ss << desc;
+    std::string indent = countIndent();
+
+    ss << indent << this->_type << "(DataAtom)" << "[" << _size << "bytes]"  << "str: " << _data << "\t";
     ss << "version: " << version << "\t";
     ss << "flags: " << flags[0] << " " << flags[1] << " " << flags[2] << "\t";
     ss << "numberOfEntries: " << numberOfEntries << "\t";
     ss << "sampleDuration: " << sampleDuration << "\t";
-    ss << "sampleCount: " << sampleCount << "\n";
+    ss << "sampleCount: " << sampleCount << "\t";
 
     ss << "I CAN COUNT DURATION: sampleDuration x sampleCount = " << sampleDuration << " x " << sampleCount << " = " << \
         sampleCount * sampleDuration << "\n";
-    ss << "entries: \n";
-    for (int i = 0; i < std::min((int)numberOfEntries, 100); i++) {
-        ss << i << ": " << tableEntries[i] << "\n";
-    }
+//    ss << "entries: \n";
+//    int sum = 0;
+//    for (int i = 0; i < std::min((int)numberOfEntries, 400); i++) {
+//        ss << i << ": " << tableEntries[i] << "\n";
+//        sum += tableEntries[i];
+//    }
+//    ss << "sum: " << sum << "\n";
 
-    ss << "\n";
+//    ss << "\n";
     return ss.str();
 }
 

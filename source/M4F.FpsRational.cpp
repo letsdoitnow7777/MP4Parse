@@ -12,8 +12,8 @@ void FpsRational::processData(MP4::IBinaryStream * stream, size_t length ) {
         printf("bad value of fps(rational! length %d\n", (int)length);
         exit(1);
     }
-    int fpsRationalUpper = MP4::readBigEndianUnsignedInteger(stream);
-    int fpsRationalDowner = MP4::readBigEndianUnsignedInteger(stream);
+    int fpsRationalUpper = MP4::readBigEndianUnsignedInteger(stream);  // 32 bit, 4 bytes
+    int fpsRationalDowner = MP4::readBigEndianUnsignedInteger(stream); // 32 bit, 4 bytes
     fpsRational = fpsRationalUpper/fpsRationalDowner;
 }
 
