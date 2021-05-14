@@ -122,10 +122,10 @@ Atom* ContainerAtom::findChild( const std::string &type )
 }
 
 void ContainerAtom::processData(MP4::IBinaryStream *stream, size_t length) {
-//    printf("Container atom : process data. type %s lentgh %d\n", _type.c_str(), (int)length);
+    printf("Container atom : process data. type %s lentgh %d\n", _type.c_str(), (int)length);
     auto boundedStream = new MP4::BinaryStreamBounded(stream, length);
     MP4::IParser * parser = new MP4::Parser(boundedStream, this);
-    parser->Parse();
     this->_size = length;
+    parser->Parse();
 
 }

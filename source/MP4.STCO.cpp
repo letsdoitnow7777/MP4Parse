@@ -44,14 +44,14 @@ void STCO::processData(MP4::IBinaryStream * stream, size_t length )
     this->_size = length;
     this->_dataLength = length;
 
-    version = readUnsignedChar(stream);
-    flags[0] = readUnsignedChar(stream);
-    flags[1] = readUnsignedChar(stream);
-    flags[2] = readUnsignedChar(stream);
+    version = readUnsignedChar(stream); // 1
+    flags[0] = readUnsignedChar(stream);// 1
+    flags[1] = readUnsignedChar(stream);// 1
+    flags[2] = readUnsignedChar(stream);// 1
     // fixme maybe order upper is wrong and we wanted 0->1->2
 
     numberOfEntries = readBigEndianUnsignedInteger(stream);
-    chunkOffsets = new uint32_t [numberOfEntries];
+    chunkOffsets = new uint32_t [numberOfEntries];  // 4 bytes
 
     for (int i = 0; i < numberOfEntries; i++) {
         chunkOffsets[i] = readBigEndianUnsignedInteger(stream);

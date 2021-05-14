@@ -56,7 +56,7 @@ namespace MP4
 
         HDLR();
 
-        void processData(MP4::IBinaryStream * stream, size_t length );
+        void processData(MP4::IBinaryStream * stream, size_t length ) override;
         std::string description() override;
     };
 }

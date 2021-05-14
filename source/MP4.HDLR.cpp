@@ -45,23 +45,21 @@ void HDLR::processData(MP4::IBinaryStream * stream, size_t length )
     this->_size = length;
     this->_dataLength = length;
 
-    version = readUnsignedChar(stream);
-    flags[0] = readUnsignedChar(stream);
-    flags[1] = readUnsignedChar(stream);
-    flags[2] = readUnsignedChar(stream);
+    version = readUnsignedChar(stream);     // 1 byte
+    flags[0] = readUnsignedChar(stream);    // 1 byte
+    flags[1] = readUnsignedChar(stream);    // 1 byte
+    flags[2] = readUnsignedChar(stream);    // 1 byte
     // fixme maybe order upper is wrong and we wanted 0->1->2
 
-//    char                 componentType[ 5 ];
     memset(componentType, 0, 5 );
     stream->read(( char * )componentType, 4 );          // 4 bytes
 
-//    char                 componentSubType[ 5 ];
     memset(componentSubType, 0, 5 );
     stream->read(( char * )componentSubType, 4 );       // 4 bytes
 
-    int nameLength = length -  4 - 4;
+    int nameLength = (int)length -  (1 * 4) - 4 - 4;
     char *name = new char[nameLength + 1];
-    memset(name, 0, length - 4 - 4);
+    memset(name, 0, nameLength + 1);
     stream->read((char*) name, nameLength);
     componentName = name;
 }

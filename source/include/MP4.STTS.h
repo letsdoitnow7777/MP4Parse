@@ -46,9 +46,8 @@ namespace MP4
         uint8_t flags[3];
 
         uint32_t numberOfEntries;
-        uint32_t sampleDuration;
-        uint32_t sampleCount;
-        uint32_t *tableEntries;
+        uint32_t *sampleDuration;
+        uint32_t *sampleCount;
 
     protected:
 

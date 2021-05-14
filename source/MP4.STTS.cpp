@@ -51,14 +51,12 @@ void STTS::processData(MP4::IBinaryStream * stream, size_t length )
     // fixme maybe order upper is wrong and we wanted 0->1->2
 
     numberOfEntries = readBigEndianUnsignedInteger(stream);  // 32 4
-    sampleDuration = readBigEndianUnsignedInteger(stream);   // 32 4
-    sampleCount = readBigEndianUnsignedInteger(stream);      // 32 4
-    tableEntries = new uint32_t [numberOfEntries];
-
+    sampleCount = new uint32_t [numberOfEntries];
+    sampleDuration = new uint32_t [numberOfEntries];
     for (int i = 0; i < numberOfEntries; i++) {
-        tableEntries[i] = readBigEndianUnsignedInteger(stream);
+        sampleDuration[i] = readBigEndianUnsignedInteger(stream);   // 32 4
+        sampleCount[i] = readBigEndianUnsignedInteger(stream);      // 32 4
     }
-
 }
 
 
@@ -70,11 +68,14 @@ std::string STTS::description() {
     ss << "version: " << version << "\t";
     ss << "flags: " << flags[0] << " " << flags[1] << " " << flags[2] << "\t";
     ss << "numberOfEntries: " << numberOfEntries << "\t";
-    ss << "sampleDuration: " << sampleDuration << "\t";
-    ss << "sampleCount: " << sampleCount << "\t";
 
-    ss << "I CAN COUNT DURATION: sampleDuration x sampleCount = " << sampleDuration << " x " << sampleCount << " = " << \
-        sampleCount * sampleDuration << "\n";
+    int totalDuration = 0;
+    ss << "I CAN COUNT DURATION: sum of sampleDuration[k] x sampleCount[k] = \n";
+    for (int i = 0; i< numberOfEntries; i++) {
+        totalDuration += sampleCount[i] * sampleDuration[i];
+        ss << sampleCount[i] << " x " << sampleCount << " +\n";
+    }
+    ss << "  = " << totalDuration << "\n";
 //    ss << "entries: \n";
 //    int sum = 0;
 //    for (int i = 0; i < std::min((int)numberOfEntries, 400); i++) {

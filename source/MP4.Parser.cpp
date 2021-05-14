@@ -97,7 +97,7 @@ int Parser::Parse()
             containerAtom->addParent(parentAtom);
             parentAtom->addChild( containerAtom );
 
-//            printf("---parse container atom: %s, size %d\n", type, (int)dataLength);
+            printf("---parse container atom: %s, size %d\n", type, (int)dataLength);
             containerAtom->processData(this->_stream, dataLength);
 //            printf("---finished container atom: %s, size %d\n", type, (int)dataLength);
 
@@ -167,7 +167,7 @@ int Parser::Parse()
         atom->addParent(parentAtom);
         parentAtom->addChild(atom);
 
-//        printf("parse usual atom: %s, size %d\n", type, length);
+        printf("parse usual atom: %s, size %d\n", type, length);
         atom->processData(this->_stream, dataLength);
     }
 
