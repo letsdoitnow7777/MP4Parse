@@ -54,8 +54,8 @@ void STTS::processData(MP4::IBinaryStream * stream, size_t length )
     sampleCount = new uint32_t [numberOfEntries];
     sampleDuration = new uint32_t [numberOfEntries];
     for (int i = 0; i < numberOfEntries; i++) {
-        sampleDuration[i] = readBigEndianUnsignedInteger(stream);   // 32 4
         sampleCount[i] = readBigEndianUnsignedInteger(stream);      // 32 4
+        sampleDuration[i] = readBigEndianUnsignedInteger(stream);   // 32 4
     }
 }
 
@@ -73,7 +73,7 @@ std::string STTS::description() {
     ss << "I CAN COUNT DURATION: sum of sampleDuration[k] x sampleCount[k] = \n";
     for (int i = 0; i< numberOfEntries; i++) {
         totalDuration += sampleCount[i] * sampleDuration[i];
-        ss << sampleCount[i] << " x " << sampleCount << " +\n";
+        ss << sampleCount[i] << " x " << sampleDuration[i] << " +\n";
     }
     ss << "  = " << totalDuration << "\n";
 //    ss << "entries: \n";
