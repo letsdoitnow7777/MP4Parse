@@ -30,6 +30,10 @@
 /* $Id$ */
 
 #include "MP4.DataAtom.h"
+#ifdef __unix__
+  #include <algorithm>
+  #include <iomanip>
+#endif
 
 using namespace MP4;
 

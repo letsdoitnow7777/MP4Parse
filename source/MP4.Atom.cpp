@@ -31,7 +31,10 @@
 
 #include "MP4.Atom.h"
 
+
 using namespace MP4;
+
+#include <iterator>
 
 Atom::~Atom()
 {}

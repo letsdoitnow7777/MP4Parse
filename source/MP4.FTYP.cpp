@@ -32,7 +32,11 @@
 #include "MP4.FTYP.h"
 
 using namespace MP4;
-          
+
+#ifdef __unix__
+  #include <cstring>
+#endif
+
 FTYP::FTYP()
 {
     this->_type.append( "FTYP" );

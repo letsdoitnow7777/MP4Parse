@@ -33,6 +33,10 @@
 
 using namespace MP4;
 
+#ifdef __unix__
+  #include <cstring>
+#endif
+
 // HanDLeR
 HDLR::HDLR()
 {

@@ -58,7 +58,7 @@ namespace MP4
 
     public:
         explicit BinaryStream(char * filename );
-        virtual ~BinaryStream();
+        ~BinaryStream() override;
 
         bool good() const;
         bool eof() const override;

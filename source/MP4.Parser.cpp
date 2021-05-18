@@ -32,6 +32,10 @@
 #include "MP4.Parser.h"
 #include "atoms.h"
 
+#ifdef __unix__
+  #include <cstring>
+#endif
+
 using namespace MP4;
 
 Parser::Parser( IBinaryStream * binaryStream, MP4::ContainerAtom * containerAtom) {
